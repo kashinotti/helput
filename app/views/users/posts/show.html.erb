@@ -1,10 +1,39 @@
-<h1>投稿詳細画面</h1>
+<div>
+  <h1>投稿詳細画面</h1>
 
-<%= @post.title %>
+  <%= @post.title %>
 
-<%= @post.content %>
+  <%= @post.content %>
 
 
-<% if @post.user_id == current_user.id %>
-  <%= link_to "編集する", edit_post_path(@post.id) %>
-<% end %>
+  <% if @post.user_id == current_user.id %>
+    <%= link_to "編集する", edit_post_path(@post.id) %>
+  <% end %>
+</div>
+
+<div>
+  <h1>コメント</h1>
+  <% @post.comment.each do |comment| %>
+  <%= comment.user.name %>
+
+  <%= link_to comment.comment, post_comment_path(@post.id, comment.id) %>
+
+  <%# if comment.user.id == current_user.id %>
+  <%#= link_to "削除する", post_comment_path(comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  <%# end %>
+
+
+
+  <% end %>
+</div>
+
+
+<div>
+  <%= form_with(model:[@post, @comment], url: post_comments_path(@post.id), method: :post, local: true) do |f| %>
+
+    <%= f.text_area :comment %>
+
+    <%= f.submit "投稿する" %>
+
+  <% end %>
+</div>
