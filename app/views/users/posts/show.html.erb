@@ -1,0 +1,10 @@
+<h1>投稿詳細画面</h1>
+
+<%= @post.title %>
+
+<%= @post.content %>
+
+
+<% if @post.user_id == current_user.id %>
+  <%= link_to "編集する", edit_post_path(@post.id) %>
+<% end %>
