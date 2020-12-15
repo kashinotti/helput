@@ -1,7 +1,33 @@
 <h1>コメント詳細</h1>
 
-<%= @comment.comment %>
+<div>
+  <%= @comment.comment %>
 
-<% if @comment.user.id == current_user.id %>
-  <%= link_to "削除する", post_comment_path(@post.id, @comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-<% end %>
+  <% if @comment.user.id == current_user.id %>
+    <%= link_to "削除する", post_comment_path(@post.id, @comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  <% end %>
+</div>
+
+<!--<div>-->
+  <%# @comment.replies.order(:created_at).each do |replies| %>
+<!--    <div>-->
+      <%#= replies.user.name %>
+<!--    </div>-->
+
+<!--    <div>-->
+      <%#= replies.comment %>
+<!--    </div>-->
+
+  <%# end %>
+
+
+<!--<div>-->
+  <%#= form_with(model:[@post, @comment_reply], url: post_comments_replies_path(@post.id), method: :post, local: true) do |f| %>
+
+    <%#= f.hidden_field :parent_id, value: @post.comment.id %>
+    <%#= f.hidden_field :post_id, value: @post.id %>
+    <%#= f.text_area :comment %>
+
+    <%#= f.submit "返信する" %>
+  <%# end %>
+<!--</div>-->
