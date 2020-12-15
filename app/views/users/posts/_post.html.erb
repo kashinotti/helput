@@ -1,0 +1,32 @@
+ <div>
+  <p>
+    <%= post.title %>
+  </p>
+
+  <p>
+    <%= post.content %>
+  </p>
+
+
+  <% if current_user.liked_by?(post) %>
+    <p>
+      <%= link_to post_like_path(post.id, like.id), method: :delete, remote: true do %>
+        <i class="fas fa-heart"></i>
+      <% end %>
+      <%= post.likes.count %>
+    </p>
+  <% else %>
+    <p>
+      <%= link_to post_likes_path(post.id), method: :post, remote: true do %>
+        <i class="far fa-heart"></i>
+      <% end %>
+      <%= post.likes.count %>
+    </p>
+  <% end %>
+
+
+  <% if post.user_id == current_user.id %>
+    <%= link_to "編集する", edit_post_path(post.id) %>
+  <% end %>
+
+  </div>

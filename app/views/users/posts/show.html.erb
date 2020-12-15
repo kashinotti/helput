@@ -1,35 +1,42 @@
 <div>
   <h1>投稿詳細画面</h1>
-
-  <%= @post.title %>
-
-  <%= @post.content %>
-
-
-  <% if @post.user_id == current_user.id %>
-    <%= link_to "編集する", edit_post_path(@post.id) %>
-  <% end %>
+    <div id="post_<%= @post.id %>">
+      <%= render partial: 'users/posts/post', locals: { post: @post, like: @like } %>
+    </div>
 </div>
 
 <div>
   <h1>コメント</h1>
-  <% @post.comment.each do |comment| %>
-  <%= comment.user.name %>
 
-  <%= link_to comment.comment, post_comment_path(@post.id, comment.id) %>
+  <div>
+    <% @post.comment.each do |comment| %>
+      <p>
+        <%= comment.user.name %>
+      </p>
+      <p>
+        <%= link_to comment.comment, post_comment_path(@post.id, comment.id) %>
+      </p>
 
-  <%# if comment.user.id == current_user.id %>
-  <%#= link_to "削除する", post_comment_path(comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-  <%# end %>
+      <div>
+        <%# form_with(model:[@post, @comment_reply], url: post_comments_path(@post.id), local: true) do |f| %>
 
+          <%#= f.hidden_field :parent_id, value: comment.id %>
+          <%#= f.hidden_field :post_id, value: @post.id %>
+          <%#= f.text_area :comment %>
 
+          <%#= f.submit "返信する" %>
+        <%# end %>
+      </div>
 
-  <% end %>
+    <% end %>
+  </div>
 </div>
 
 
 <div>
   <%= form_with(model:[@post, @comment], url: post_comments_path(@post.id), method: :post, local: true) do |f| %>
+
+    <%= f.hidden_field :post_id, value: @post.id %>
 
     <%= f.text_area :comment %>
 

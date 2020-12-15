@@ -10,7 +10,9 @@ Rails.application.routes.draw do
    root to: 'homes#top'
    get '/homes/about' => 'homes#about', as: 'homes_about'
    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+     resources :likes, only: [:create, :destroy]
      resources :comments, only: [:create, :destroy, :show]
+     post '/comments/replies' => 'comments#replies', as: 'comments_replies'
    end
    get '/posts/confirm' => 'posts#confirm', as: 'posts_confirm'
   end
