@@ -9,24 +9,38 @@
   <h1>コメント</h1>
 
   <div>
-    <% @post.comment.each do |comment| %>
+    <% @comments.each do |comment| %>
+     <%# if comment.parent_id.present? || comment.id.blank? %>
+        <%# next %>
+     <%# end %>
       <p>
         <%= comment.user.name %>
       </p>
       <p>
-        <%= link_to comment.comment, post_comment_path(@post.id, comment.id) %>
+        <%= comment.comment %>
       </p>
 
-      <div>
-        <%# form_with(model:[@post, @comment_reply], url: post_comments_path(@post.id), local: true) do |f| %>
-
-          <%#= f.hidden_field :parent_id, value: comment.id %>
-          <%#= f.hidden_field :post_id, value: @post.id %>
-          <%#= f.text_area :comment %>
-
-          <%#= f.submit "返信する" %>
-        <%# end %>
+      <div class="reply_area">
+        <% comment.replies.order(:created_at).each do |reply| %>
+          <p>
+            <%= reply.user.name %>
+          </p>
+          <p>
+            <%= reply.comment %>
+          </p>
+        <% end %>
       </div>
+      <div>
+        <%= form_with(model:[@post, @comment_reply], url: post_comments_path(@post.id), local: true) do |f| %>
+
+          <%= f.hidden_field :parent_id, value: comment.id %>
+          <%= f.hidden_field :post_id, value: @post.id %>
+          <%= f.text_area :comment %>
+
+          <%= f.submit "返信する" %>
+        <% end %>
+      </div>
+
 
     <% end %>
   </div>

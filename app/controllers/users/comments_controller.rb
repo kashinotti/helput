@@ -8,11 +8,11 @@ class Users::CommentsController < ApplicationController
     redirect_to post_path(@post.id)
   end
 
-  def show
-    @comment = Comment.find_by(id: params[:id], post_id: params[:post_id])
-    @post = Post.find(params[:post_id])
-    @comment_reply = @post.comment.new
-  end
+  # def show
+  #   @comment = Comment.find_by(id: params[:id], post_id: params[:post_id])
+  #   @post = Post.find(params[:post_id])
+  #   @comment_reply = @post.comment.new
+  # end
 
   # def replies
   #   @post = Post.find(params[:post_id])
