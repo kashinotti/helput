@@ -16,9 +16,9 @@ class Users::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @like = @post.likes.find_by(user_id: current_user.id)
-    # @comments = @post.comment
-    @comment = Comment.new
-    # @comment_reply = @post.comment.new
+    @comments = @post.comments.where(parent_id: nil)
+    @comment = @post.comments.new
+    @comment_reply = @post.comments.new
   end
 
   def edit
