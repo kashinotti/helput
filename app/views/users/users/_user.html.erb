@@ -1,0 +1,45 @@
+<div>
+  <div>
+    <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "50x50" %>
+  </div>
+  <div>
+    <%= user.name %>
+  </div>
+  <div>
+    <%= user.introduce %>
+  </div>
+
+  <table>
+    <tr>
+      <p>フォロー：</p>
+    </tr>
+
+    <tr>
+       <p>フォロワー：</p>
+    </tr>
+
+    <tr>
+       <p>投稿数：<%= user.posts.count %></p>
+    </tr>
+
+    <tr>
+       <p>予定表</p>
+    </tr>
+
+    <tr>
+       <p>チャット</p>
+    </tr>
+  </table>
+
+  <div>
+    <% if user.id != current_user.id %>
+     <%= render partial: 'users/relationships/follow', locals: { user: @user } %>
+    <% end %>
+  </div>
+
+  <div>
+    <% if user.id == current_user.id %>
+      <%= link_to "プロフィールを編集する", edit_user_path(user.id) %>
+    <% end %>
+  </div>
+</div>

@@ -67,3 +67,6 @@ gem 'jquery-rails'
 
 gem 'haml-rails'
 gem 'erb2haml'
+
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
