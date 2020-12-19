@@ -16,15 +16,20 @@
     <div id="tab1" class="tab">
       <div>
         <% @posts.each do |post| %>
-          <%= post.title %>
+          <div>
+            <%= post.title %>
+          </div>
         <% end %>
       </div>
     </div>
 
     <div id="tab2" class="tab">
       <div>
-        <!--フォローしているユーザーと自分の投稿のタイムラインを後ほど実装-->
-        <p>タイムライン</p>
+        <% @timelines.each do |timeline| %>
+          <div>
+            <%= timeline.title %>
+          </div>
+        <% end %>
       </div>
     </div>
 
@@ -32,7 +37,9 @@
       <div>
         <% @likes.each do |like| %>
           <% post = Post.find_by(id: like.post_id) %>
-          <%= post.title %>
+          <div>
+            <%= post.title %>
+          </div>
         <% end %>
       </div>
     </div>
