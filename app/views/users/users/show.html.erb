@@ -1,0 +1,40 @@
+<div>
+   <%= render partial: 'users/users/user', locals: { user: @user, post: @post } %>
+</div>
+
+<div class="wrap">
+  <div id="test">
+    <p>テスト</p>
+  </div>
+  <ul id="tab-menu">
+    <li><a href="#tab1" class="active">自分の投稿</a></li>
+    <li><a href="#tab2" class="">タイムライン</a></li>
+    <li><a href="#tab3" class="">いいねした投稿</a></li>
+  </ul>
+
+  <div id="tab-index">
+    <div id="tab1" class="tab">
+      <div>
+        <% @posts.each do |post| %>
+          <%= post.title %>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="tab2" class="tab">
+      <div>
+        <!--フォローしているユーザーと自分の投稿のタイムラインを後ほど実装-->
+        <p>タイムライン</p>
+      </div>
+    </div>
+
+    <div id="tab3" class="tab">
+      <div>
+        <% @likes.each do |like| %>
+          <% post = Post.find_by(id: like.post_id) %>
+          <%= post.title %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

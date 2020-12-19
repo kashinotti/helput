@@ -10,9 +10,6 @@
 
   <div>
     <% @comments.each do |comment| %>
-     <%# if comment.parent_id.present? || comment.id.blank? %>
-        <%# next %>
-     <%# end %>
       <p>
         <%= comment.user.name %>
       </p>
