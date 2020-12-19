@@ -1,0 +1,24 @@
+<div>
+   <%= render partial: 'users/users/user', locals: { user: @user, post: @post } %>
+</div>
+
+
+<div>
+ <h1><%= @posts.count %>件の検索結果</h1>
+ <%= search_form_for @q do |f| %>
+   <%= f.label :title_or_content, "投稿を検索", placeholder:"タイトルと本文のキーワードで検索できます" %>
+   <%= f.search_field :title_or_content_cont, required: true %>
+
+   <%= f.button :type => "submit" do %>
+     <i class="fas fa-search"></i>
+   <% end %>
+ <% end %>
+</div>
+
+<div>
+  <% @posts.each do |post| %>
+    <div>
+      <%= post.title %>
+    </div>
+  <% end %>
+</div>
