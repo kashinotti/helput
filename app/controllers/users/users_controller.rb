@@ -5,6 +5,7 @@ class Users::UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts
     @likes = Like.where(user_id: @user.id)
+    @timelines = Post.where(user_id: [@user.id, @user.followings.ids].flatten).order(created_at: :desc)
   end
 
   def edit
