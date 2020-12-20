@@ -9,11 +9,17 @@ class User < ApplicationRecord
 
   has_many :likes, dependent: :destroy
   
-  # フォロー機能のアソシエーション
+  # フォロー機能関連のアソシエーション
   has_many :relationships
   has_many :followings, through: :relationships, source: :follow
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverse_of_relationships, source: :user
+  
+  # チャット機能関連のアソシエーション
+  has_many :user_rooms, dependent: :destroy
+  has_many :chats, dependent: :destroy
+  
+  
   
   def follow(other_user)
     unless self == other_user

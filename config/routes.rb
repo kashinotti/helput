@@ -17,6 +17,8 @@ Rails.application.routes.draw do
    end
    get '/posts/confirm' => 'posts#confirm', as: 'posts_confirm'
   resources :relationships, only: [:destroy, :create]
+  resources :chats, only: [:create]
+  resources :rooms, only: [:create, :show]
   end
 
 
