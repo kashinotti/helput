@@ -1,5 +1,8 @@
 {
   "name": "helput",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^10.1.0"
+  }
 }
