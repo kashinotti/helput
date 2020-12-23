@@ -7,7 +7,7 @@
   </div>
 <% end %>
 
-<div>
+<div class="messages">
   <% if @chats.present? %>
     <% @chats.each do |chat| %>
       <div>
@@ -24,10 +24,12 @@
 
 
 <div>
-  <%= form_with model: @chat, url: chats_path, method: :post, local: true do |f| %>
-    <%= f.text_area :message %>
+  <%= form_with model: @chat, url: "#{chats_path}.json", method: :post, id: "new-message", local: true do |f| %>
+    <%= f.text_area :message, class: "form_message" %>
     <%= f.hidden_field :room_id, value: @room.id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.submit "送信"%>
+    <div>
+      <p><%= f.submit "送信", class: "form_submit" %></p>
+    </div>
   <% end %>
 </div>
