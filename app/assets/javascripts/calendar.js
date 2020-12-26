@@ -12,11 +12,12 @@ $(function(){
   $(document).on('turbolinks:load', function() {
     eventCalendar({});
   });
-  
-  var user = $('.events_user').val();
-  $('#calendar').fullCalendar({
-    events: `/users/${user}/events/index.json`,
 
+  // events/index.htmlのinputタグの値をuser_idに代入
+  var user_id = $('.events_user').val();
+
+  $('#calendar').fullCalendar({
+    events: `/users/${user_id}/events/index.json`,
     titleFormat: 'YYYY年M月',
 
     // initialView: 'dayGridMonth',
@@ -44,9 +45,13 @@ $(function(){
 
   　eventColor: '#136FFF',
 
-  　eventTextColor: '#000',
+  　eventTextColor: 'white',
 
-    eventTimeFormat: 'HH:mm'
+    eventTimeFormat: 'HH:mm',
+
+    // eventClick: function(info) {
+    //   location.href = `/events/${event.id}`;
+    // }
 
   })
 });

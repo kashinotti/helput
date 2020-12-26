@@ -17,26 +17,26 @@ class Users::EventsController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    
+
     #jsonでeventテーブルのレコードを読み込むとindex.json.jbuilderで定義したstartとendがstart_date,end_dateになっていてカレンダーに表示できない現象あり。
-    #そのため、ASでstart,endに変換し、jsonで取得する。
-    @events = Event.where(user_id: @user.id).select('id, user_id, title, content, start_date AS start, end_date AS end').as_json
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @events }
-    end
+    #対応として、ASでstart,endに変換し、jsonで取得する。
+    @events = Event.where(user_id: @user.id).select('id, user_id, title, content, start_date AS start, end_date AS end')
+
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   format.json { render :json => @events }
+    # end
   end
 
   def show
-    @events = Event.find(params[:id])
+    @event = Event.find(params[:id])
   end
 
   def edit
+    @event = Event.find(params[:id])
     unless @event.user == current_user
       redirect_to root_path
     end
-    @event = Event.find(params[:id])
   end
 
   def update
