@@ -1,0 +1,29 @@
+<%= form_with model: @event, url: "#{events_path}.json", method: :post, local: true do |f| %>
+
+  <%= f.label :title, '予定のタイトル' %>
+  <br>
+  <%= f.text_field :title %>
+
+  <br>
+
+  <%= f.label :content, '予定の詳細' %>
+  <br>
+  <%= f.text_area :content %>
+
+  <br>
+
+  <%= f.label :start_date, '開始時間' %>
+  <br>
+  <%= f.datetime_select :start_date, {use_month_numbers: true, start_year: Date.today.year} %>
+
+  <br>
+
+  <%= f.label :end_date, '終了時間' %>
+  <br>
+  <%= f.datetime_select :end_date, {use_month_numbers: true, start_year: Date.today.year} %>
+
+  <br>
+
+  <%= f.submit '予定を追加' %>
+
+<% end %>

@@ -9,7 +9,9 @@ Rails.application.routes.draw do
    }
    root to: 'homes#top'
    get '/homes/about' => 'homes#about', as: 'homes_about'
-   resources :users, only: [:show, :edit, :update]
+   resources :users, only: [:show, :edit, :update] do
+     get 'events/index' => 'events#index', as: 'events'
+   end
    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
      resources :likes, only: [:create, :destroy]
      resources :comments, only: [:create, :destroy, :show]
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:destroy, :create]
   resources :chats, only: [:create]
   resources :rooms, only: [:create, :show]
+  resources :events, only: [:new, :create, :show, :edit, :update, :destroy]
   end
 
 
