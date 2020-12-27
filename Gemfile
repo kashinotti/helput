@@ -71,3 +71,5 @@ gem 'erb2haml'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'ransack'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
