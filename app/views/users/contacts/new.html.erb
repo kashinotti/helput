@@ -1,0 +1,21 @@
+<h1>お問い合わせ</h1>
+<p>ご不明な点がありましたら、下記フォームに必要事項入力の上、お問い合わせください。</p>
+
+<div>
+  <%= form_with model: @contact, url: contacts_path, method: :post, local: true do |f| %>
+  
+    <%= f.label :name, 'お名前(必須)' %><br>
+    <%= f.text_field :name %>
+    <br>
+    <%= f.label :email, 'メールアドレス(必須)' %><br>
+    <%= f.text_field :email %>
+    <br>
+    <%= f.label :subject, '件名(必須)' %><br>
+    <%= f.text_field :subject %>
+    <br>
+    <%= f.label :message, 'お問い合わせ内容(必須)' %><br>
+    <%= f.text_area :message %>
+    
+    <%= f.submit '送信' %>
+  <% end %>
+</div>

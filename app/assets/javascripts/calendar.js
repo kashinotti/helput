@@ -49,9 +49,5 @@ $(function(){
 
     eventTimeFormat: 'HH:mm',
 
-    // eventClick: function(info) {
-    //   location.href = `/events/${event.id}`;
-    // }
-
   })
 });

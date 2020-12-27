@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   resources :chats, only: [:create]
   resources :rooms, only: [:create, :show]
   resources :events, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :contacts, only: [:new, :create]
+  get 'contacts/complete' => 'contacts#complete', as: 'contact_complete'
   end
 
 

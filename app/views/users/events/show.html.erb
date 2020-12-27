@@ -42,7 +42,7 @@
   </table>
   
   <div>
-    <%= link_to "予定を編集する", edit_user_path(@event.id) %>
+    <%= link_to "予定を編集する", edit_event_path(@event.id) %>
     |
     <%= link_to "予定の削除", event_path(@event.id), method: :delete, data: {confirm: "本当に削除しますか？"} %>
   </div>
