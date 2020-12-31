@@ -17,7 +17,6 @@
 //= require moment
 //= require fullcalendar
 //= require bootstrap-sprockets
-//= require_tree .
 
 //= require froala_editor.min
 //= require plugins/align.min
@@ -46,3 +45,10 @@
 //= require plugins/url.min
 //= require plugins/video.min
 //= require languages/ja
+
+//= require third_party/embedly.min.js
+//= require third_party/font_awesome.min.js
+//= require third_party/image_tui.min.js
+//= require third_party/spell_checker.min.js
+
+//= require_tree .

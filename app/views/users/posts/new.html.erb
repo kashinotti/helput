@@ -8,7 +8,7 @@
 
     <div>
       <%= f.label :content, "本文" %>
-      <%= f.text_area :content, id: 'content_form' %>
+      <%= f.text_area :content, id: 'new_content_form' %>
     </div>
 
     <div>
@@ -20,7 +20,12 @@
 
 
 <script>
-  new FroalaEditor('#content_form',{
+  new FroalaEditor('#new_content_form',{
     language: 'ja',
+    imageUploadURL: '/upload_image',
+    imageUploadParams: {
+      id: 'my_editor'
+    },
+    emoticonsUseImage: false
   });
 </script>

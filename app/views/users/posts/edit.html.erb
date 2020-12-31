@@ -6,9 +6,22 @@
     <%= f.text_field :title %>
 
     <%= f.label :content, "本文" %>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, id: 'edit_content_form' %>
 
     <%= f.submit %>
   <% end %>
   
   <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  
+  
+  
+  <script>
+  new FroalaEditor('#edit_content_form',{
+    language: 'ja',
+    imageUploadURL: '/upload_image',
+    imageUploadParams: {
+      id: 'my_editor'
+    },
+    emoticonsUseImage: false
+  });
+</script>

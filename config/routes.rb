@@ -26,10 +26,16 @@ Rails.application.routes.draw do
   get 'contacts/complete' => 'contacts#complete', as: 'contact_complete'
   end
 
+  post "/upload_image" => "upload#upload_image", :as => :upload_image
+  get "/download_file/:name" => "upload#access_file", :as => :upload_access_file, :name => /.*/
 
-  scope module: :admins do
+
+  namespace :admins do
   devise_for :admins, controllers: {
     sessions: 'admins/sessions'
   }
+  get "/homes/top" => "homes#top", as: "homes"
+  resources :users, only: [:index, :show]
+
   end
 end

@@ -1,0 +1,5 @@
+<!--ルーティング設定が完了するまではトップ画面をパスに指定-->
+
+<h3>現在のユーザー数 <%= link_to @users.count, admins_users_path %></h3>
+
+<h3>現在の投稿数 <%= link_to @posts.count, admins_homes_path %></h3>
