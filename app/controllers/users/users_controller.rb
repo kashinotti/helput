@@ -42,6 +42,10 @@ class Users::UsersController < ApplicationController
     redirect_to user_path(@user.id)
   end
   
+  def unsubscribe
+    @user = User.find_by(id: current_user.id)
+  end
+  
   def withdraw
     @user = User.find(params[:id])
     # is_deletedカラムをtrueにする

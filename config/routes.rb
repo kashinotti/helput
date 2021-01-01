@@ -12,6 +12,8 @@ Rails.application.routes.draw do
    resources :users, only: [:show, :edit, :update] do
      get 'events/index' => 'events#index', as: 'events'
    end
+   get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'user_unsubscribe'
+   patch '/users/:id/withdraw' => 'users#withdraw', as: 'user_withdraw'
    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
      resources :likes, only: [:create, :destroy]
      resources :comments, only: [:create, :destroy, :show]
