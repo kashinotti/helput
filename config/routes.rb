@@ -37,7 +37,8 @@ Rails.application.routes.draw do
     sessions: 'admins/sessions'
   }
   get "/homes/top" => "homes#top", as: "homes"
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show, :update]
+  resources :posts, only: [:index, :show, :destroy]
 
   end
 end

@@ -1,0 +1,10 @@
+<h2>
+  <%= @post.title %>
+</h2>
+
+<div>
+  <%== @post.content %>
+</div>
+
+
+<%= link_to '投稿を削除する', admins_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>

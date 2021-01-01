@@ -1,0 +1,24 @@
+<div>
+  <p><%= flash[:notice] %></p>
+  <h1>投稿一覧（更新順）</h1>
+  
+  <div>
+    <%= search_form_for @q do |f| %>
+      <%= f.label :title_or_content, "投稿を検索", placeholder:"タイトルと本文で検索できます。" %>
+      <%= f.search_field :title_or_content_cont, required: true %>
+      
+      <%= f.button :type => "submit" do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div>
+    <% @posts.each do |post| %>
+
+      <p>
+        <%= link_to post.title, admins_post_path(post.id) %>
+      </p>
+    <% end %>
+  </div>
+</div>

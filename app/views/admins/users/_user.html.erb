@@ -23,4 +23,17 @@
     </tr>
    
   </table>
+  
+  <div>
+    <%= form_with model: user, url: admins_user_path(user.id), method: :patch, local: true do |f| %>
+      
+      <%= f.radio_button :is_deleted, FALSE %> 有効
+      <%= f.radio_button :is_deleted, TRUE %> 無効
+    
+      <div>
+        <%= f.submit '退会フラグを変更する' %>
+      </div>
+    <% end %>
+  </div>
+  
 </div>
