@@ -41,6 +41,17 @@ class Users::UsersController < ApplicationController
     @user.update(user_params)
     redirect_to user_path(@user.id)
   end
+  
+  def withdraw
+    @user = User.find(params[:id])
+    # is_deletedカラムをtrueにする
+    @user.update(is_deleted: true)
+    # ログアウトさせる
+    reset_session
+    flash[:notice] = 'ご利用いただきありがとうございました。またのご利用をお待ちしております'
+    redirect_to root_path
+    
+  end
 
   private
 
