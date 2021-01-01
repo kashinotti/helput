@@ -42,6 +42,17 @@ class Users::UsersController < ApplicationController
     redirect_to user_path(@user.id)
   end
   
+  def follow_index
+    @user = User.find(params[:id])
+    @followings = @user.followings.all
+  end
+  
+  
+  def follower_index
+    @user = User.find(params[:id])
+    @followers = @user.followers.all
+  end
+  
   def unsubscribe
     @user = User.find_by(id: current_user.id)
   end
