@@ -35,3 +35,33 @@
 @import 'third_party/embedly.min.css';
 @import 'third_party/image_tui.min.css';
 @import 'third_party/spell_checker.min.css';
+
+
+
+header {
+  background-color: black;
+  width: 100%;
+  height: 100px;
+  .header-title h1 {
+      font-size: 60px;
+      color: white;
+      text-decoration: none;
+      line-height: 100px;
+    :hover {
+      text-decoration: none;
+      color: white;
+    }
+    :active {
+      text-decoration: none;
+      color: white;
+    }
+    :visited {
+      text-decoration: none;
+      color: white;
+    }
+    :link {
+      text-decoration: none;
+      color: white;
+    }
+  }
+}

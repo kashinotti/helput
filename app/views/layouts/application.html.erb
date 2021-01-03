@@ -11,6 +11,41 @@
   </head>
 
   <body>
+    <header>
+      <div class="header-title">
+        <h1>
+          <%= link_to 'helput', root_path %>
+        </h1>
+      </div>
+      
+      <% if user_signed_in? %>
+      <% else %>
+        <nav>
+          <ul class="header-list">
+            <li>
+              <%= link_to '新規登録', new_user_registration_path %>
+            </li>
+            
+            <li>
+              <%= link_to 'ログイン', new_user_session_path %>
+            </li>
+            
+            <li>
+              <%= link_to 'helputについて', homes_about_path %>
+            </li>
+            
+            <li>
+              <%= link_to 'お問い合わせ', new_contact_path %>
+            </li>
+          </ul>
+        </nav>
+      <% end %>
+    </header>
     <%= yield %>
+    <footer>
+      <p class="footer-text">
+        Copyright © ono ryota. All Rights Reserved.
+      </p>
+    </footer>
   </body>
 </html>
