@@ -80,6 +80,7 @@ header {
     text-align: right;
     &__header-item {
       padding-right: 30px;
+      font-size: 18px;
       
       :visited {
         text-decoration: none;
@@ -89,6 +90,76 @@ header {
         text-decoration: none;
         color: white;
       }
+    }
+  }
+  
+  #hamburger-nav {
+    position: absolute;
+    top: 0;
+    // ナビメニューを左に隠した状態にする
+    left: -40%;
+    width: 40%;
+    height: 100vh;
+    background-color: white;
+    transition: .8s;
+    ul {
+      padding-top: 80px;
+      li {
+        list-style: none;
+        font-size: 20px;
+        text-decoration: none;
+        padding: 10px;
+        :hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  #hamburger-icon {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 50px;
+    height: 44px;
+    cursor: pointer;
+    transition: 1s;
+    .inner-line {
+      display: block;
+      position: absolute;
+      right: 0;
+      width: 50px;
+      height: 3px;
+      background-color: white;
+      transition: 1s;
+      border-radius: 4px;
+    }
+    #line1 {
+      top: 0;
+    }
+    #line2 {
+      top: 20px;
+    }
+    #line3 {
+      bottom: 0px;
+    }
+    .in {
+      transform: translate(100%);
+    }
+    .line_1,.line_2,.line_3{
+      background: #000000;
+    }
+    .line_1 {
+      transform: rotate(-45deg);
+      top: 0;
+    }
+    .line_2 {
+      opacity: 0;
+    }
+    .line_3 {
+      transform: rotate(45deg);
+      bottom: 0;
     }
   }
 }

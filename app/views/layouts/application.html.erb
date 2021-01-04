@@ -19,7 +19,42 @@
       </div>
       
       <% if user_signed_in? %>
+        <!--ナビゲーションメニュー（ハンバーガーメニューを開いた時に表示される）-->
+        <nav id="hamburger-nav">
+          <ul>
+            <li>
+              <%= link_to 'マイページ', user_path(current_user.id) %>
+            </li>
+            <li>
+              <%= link_to '投稿する', new_post_path %>
+            </li>
+            <li>
+              チャット
+            </li>
+            <li>
+              <%= link_to 'お問い合わせ', new_contact_path %>
+            </li>
+            <li>
+              <%= link_to 'ログアウト', destroy_user_session_path %>
+            </li>
+            <li>
+              <%= link_to '退会する', user_unsubscribe_path(current_user.id) %>
+          </ul>
+        </nav>
+        
+        
+        <!--ハンバーガーメニューアイコン-->
+        <div id="hamburger-icon">
+          <!--上の線-->
+          <span class="inner-line" id="line1"></span>
+          <!--真ん中の線-->
+          <span class="inner-line" id="line2"></span>
+          <!--下の線-->
+          <span class="inner-line" id="line3"></span>
+        </div>
+      
       <% else %>
+      <!--ログインしていない場合に表示するナビゲーションメニュー-->
         <nav>
           <ul class="header-list">
             <li class="header-list__header-item">
