@@ -141,7 +141,7 @@ header {
       }
     }
   }
-  
+
   // ハンバーガーメニューをクリックした時に表示されるメニューのCSS
   #hamburger-nav.show {
     opacity: 1;
@@ -180,7 +180,7 @@ header {
       bottom: 0px;
     }
   }
-  
+
   // ハンバーガーアイコンをクリックしたときに適用される
   #hamburger-icon.show span:nth-child(1) {
     transform: translateY(20px) rotate(-45deg);
@@ -195,4 +195,17 @@ header {
     background-color: black;
   }
 
+}
+
+
+footer {
+  background-color: black;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .footer-text {
+    color: white;
+  }
 }
