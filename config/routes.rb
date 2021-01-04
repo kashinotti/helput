@@ -40,7 +40,9 @@ Rails.application.routes.draw do
   }
   get "/homes/top" => "homes#top", as: "homes"
   resources :users, only: [:index, :show, :update]
+  get '/posts/search_index' => 'posts#search_index', as: 'search_index'
   resources :posts, only: [:index, :show, :destroy]
+  
 
   end
 end
