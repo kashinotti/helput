@@ -73,3 +73,4 @@ gem "refile-mini_magick"
 gem 'ransack'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'wysiwyg-rails'

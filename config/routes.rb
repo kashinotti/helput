@@ -12,6 +12,10 @@ Rails.application.routes.draw do
    resources :users, only: [:show, :edit, :update] do
      get 'events/index' => 'events#index', as: 'events'
    end
+   get '/users/:id/follow_index' => 'users#follow_index', as: 'user_follow'
+   get '/users/:id/follower_index' => 'users#follower_index', as: 'user_follower' 
+   get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'user_unsubscribe'
+   patch '/users/:id/withdraw' => 'users#withdraw', as: 'user_withdraw'
    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
      resources :likes, only: [:create, :destroy]
      resources :comments, only: [:create, :destroy, :show]
@@ -26,10 +30,17 @@ Rails.application.routes.draw do
   get 'contacts/complete' => 'contacts#complete', as: 'contact_complete'
   end
 
+  post "/upload_image" => "upload#upload_image", :as => :upload_image
+  get "/download_file/:name" => "upload#access_file", :as => :upload_access_file, :name => /.*/
 
-  scope module: :admins do
+
+  namespace :admins do
   devise_for :admins, controllers: {
     sessions: 'admins/sessions'
   }
+  get "/homes/top" => "homes#top", as: "homes"
+  resources :users, only: [:index, :show, :update]
+  resources :posts, only: [:index, :show, :destroy]
+
   end
 end

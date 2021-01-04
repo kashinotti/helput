@@ -41,6 +41,32 @@ class Users::UsersController < ApplicationController
     @user.update(user_params)
     redirect_to user_path(@user.id)
   end
+  
+  def follow_index
+    @user = User.find(params[:id])
+    @followings = @user.followings.all
+  end
+  
+  
+  def follower_index
+    @user = User.find(params[:id])
+    @followers = @user.followers.all
+  end
+  
+  def unsubscribe
+    @user = User.find_by(id: current_user.id)
+  end
+  
+  def withdraw
+    @user = User.find(params[:id])
+    # is_deletedカラムをtrueにする
+    @user.update(is_deleted: true)
+    # ログアウトさせる
+    reset_session
+    flash[:notice] = 'ご利用いただきありがとうございました。またのご利用をお待ちしております'
+    redirect_to root_path
+    
+  end
 
   private
 

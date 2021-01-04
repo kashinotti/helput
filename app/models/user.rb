@@ -45,5 +45,10 @@ class User < ApplicationRecord
   def liked_by?(post)
     likes.where(post_id: post.id).exists?
   end
+  
+  # ログイン時に退会済みユーザーを弾くためのメソッド
+  def active_for_authentication?
+    super && (self.is_deleted == false)
+  end
 
 end

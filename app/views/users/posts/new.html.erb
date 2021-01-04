@@ -1,12 +1,31 @@
 <div class="post-new">
   <%= form_with model: @post, url: posts_path, method: :post, local: true do |f| %>
-    
-    <%= f.label :title, "タイトル" %>
-    <%= f.text_field :title %>
 
-    <%= f.label :content, "本文" %>
-    <%= f.text_area :content %>
+    <div>
+      <%= f.label :title, "タイトル" %>
+      <%= f.text_field :title %>
+    </div>
 
-    <%= f.submit %>
+    <div>
+      <%= f.label :content, "本文" %>
+      <%= f.text_area :content, id: 'new_content_form' %>
+    </div>
+
+    <div>
+      <%= f.submit '投稿' %>
+    </div>
+
   <% end %>
 </div>
+
+
+<script>
+  new FroalaEditor('#new_content_form',{
+    language: 'ja',
+    imageUploadURL: '/upload_image',
+    imageUploadParams: {
+      id: 'my_editor'
+    },
+    emoticonsUseImage: false
+  });
+</script>

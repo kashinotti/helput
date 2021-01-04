@@ -1,0 +1,39 @@
+<div>
+  <div>
+    <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "50x50" %>
+  </div>
+  <div>
+    <%= user.name %>
+  </div>
+  <div>
+    <%= user.introduce %>
+  </div>
+
+  <table>
+    <tr>
+      <p>フォロー：</p>
+    </tr>
+
+    <tr>
+       <p>フォロワー：</p>
+    </tr>
+
+    <tr>
+       <p>投稿数：<%= user.posts.count %></p>
+    </tr>
+   
+  </table>
+  
+  <div>
+    <%= form_with model: user, url: admins_user_path(user.id), method: :patch, local: true do |f| %>
+      
+      <%= f.radio_button :is_deleted, FALSE %> 有効
+      <%= f.radio_button :is_deleted, TRUE %> 無効
+    
+      <div>
+        <%= f.submit '退会フラグを変更する' %>
+      </div>
+    <% end %>
+  </div>
+  
+</div>

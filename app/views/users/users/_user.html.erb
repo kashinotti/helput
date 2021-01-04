@@ -11,11 +11,11 @@
 
   <table>
     <tr>
-      <p>フォロー：</p>
+      <p>フォロー：<%= link_to user.followings.count, user_follow_path(user.id) %></p>
     </tr>
 
     <tr>
-       <p>フォロワー：</p>
+       <p>フォロワー：<%= link_to user.followers.count, user_follower_path(user.id) %></p>
     </tr>
 
     <tr>
@@ -23,7 +23,7 @@
     </tr>
 
     <tr>
-       <p>予定表</p>
+       <p><%= link_to '予定表', user_events_path(user_id: user.id) %></p>
     </tr>
 
     <tr>
