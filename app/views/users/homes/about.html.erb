@@ -1,1 +1,81 @@
-<h1>about画面</h1>
+<div class="about-title">
+  <h1>About helput</h1>
+</div>
+
+<section class="about-post">
+  <div class="about-post__container">
+
+    <div class="about-post__heading">
+      <h1>学習したことをアウトプット・共有</h1>
+    </div>
+
+    <div class="about-post__post-content">
+      <div class="about-post__post-content--left-content">
+      <p>
+        ここには投稿機能に関する説明文が入ります。<br>
+        あああああああああああああああああああああ
+      </p>
+      </div>
+
+      <div class="about-post__post-content--right-content">
+        <%= image_tag asset_path('about-post.jpg'), :size => '700x450' %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-event">
+  <div class="about-event__container">
+
+    <div class="about-event__heading">
+      <h1>予定表で離れていても相手の状況を一目で確認</h1>
+    </div>
+
+    <div class="about-event__event-content">
+      <div class="about-event__event-content--left-content">
+        <%= image_tag asset_path('about-event.jpg'), :size => '650x450' %>
+      </div>
+
+      <div class="about-event__event-content--right-content">
+        <p>
+          ここには投稿機能に関する説明文が入ります。<br>
+          あああああああああああああああああああああ
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-chat">
+  <div class="about-chat__container">
+
+    <div class="about-chat__heading">
+      <h1>わからないことはチャットで質問</h1>
+    </div>
+
+    <div class="about-chat__chat-content">
+      <div class="about-chat__chat-content--left-content">
+      <p>
+        ここには投稿機能に関する説明文が入ります。<br>
+        あああああああああああああああああああああ
+      </p>
+      </div>
+
+      <div class="about-chat__chat-content--right-content">
+        <%= image_tag asset_path('about-post.jpg'), :size => '700x450' %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="about-end">
+  <div class="about-end__registration">
+    <p>
+      さあ、今すぐhelputを始めよう！
+    </p>
+    <%= link_to new_user_registration_path do %>
+      <button>新規会員登録</button>
+    <% end %>
+  </div>
+
+</div>

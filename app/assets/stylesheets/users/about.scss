@@ -1,0 +1,163 @@
+
+// 投稿機能に関する説明部分のレイアウト
+.about-title {
+  width: 100%;
+  height: 300px;
+  text-align: center;
+  line-height: 300px;
+  h1 {
+    display: inline-block;
+    font-size: 60px;
+    border-bottom: 7px solid #10739E;
+    padding-bottom: 5px;
+  }
+}
+
+.about-post {
+  width: 100%;
+  height: 800px;
+  background-color: #EDFFFE;
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    width: 1300px;
+  }
+
+  &__heading {
+    text-align: center;
+    padding-bottom: 80px;
+    h1::after {
+      content: "";
+      display: block;
+      width: 600px;
+      height: 4px;
+      margin: 3px auto 0 auto;
+      background-color: #EC715F;
+    }
+  }
+
+  &__post-content {
+    display: flex;
+    width: 100%;
+    &--left-content {
+      font-size: 20px;
+      width: 45%;
+    }
+    &--right-content {
+      padding-left: 60px;
+      width: 45%;
+    }
+  }
+}
+
+// 予定表機能に関す説明部分のレイアウト
+.about-event {
+  width: 100%;
+  height: 800px;
+  background-color: #F5F5F5;
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    width: 1300px;
+  }
+
+  &__heading {
+    text-align: center;
+    padding-bottom: 80px;
+    h1::after {
+      content: "";
+      display: block;
+      width: 800px;
+      height: 4px;
+      margin: 3px auto 0 auto;
+      background-color: #10739E;
+    }
+  }
+
+  &__event-content {
+    display: flex;
+    width: 100%;
+    &--left-content {
+      width: 50%;
+      padding-right: 100px;
+    }
+    &--right-content {
+      font-size: 20px;
+      width: 50%;
+      text-align: right;
+    }
+  }
+}
+
+// チャット機能の説明部分のレイアウト
+.about-chat {
+  width: 100%;
+  height: 800px;
+  background-color: #EDFFFE;
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    width: 1300px;
+  }
+
+  &__heading {
+    text-align: center;
+    padding-bottom: 80px;
+    h1::after {
+      content: "";
+      display: block;
+      width: 580px;
+      height: 4px;
+      margin: 3px auto 0 auto;
+      background-color: #EC715F;
+    }
+  }
+
+  &__chat-content {
+    display: flex;
+    width: 100%;
+    &--left-content {
+      font-size: 20px;
+      width: 45%;
+    }
+    &--right-content {
+      padding-left: 60px;
+      width: 45%;
+    }
+  }
+}
+
+// 新規会員登録ボタン部分のレイアウト
+
+.about-end {
+  height: 450px;
+  &__registration {
+    text-align: center;
+    font-size: 30px;
+    padding-top: 130px;
+    button {
+     display: inline-block;
+     text-align: center;
+     border: 1px solid black;
+     font-size: 2.5rem;
+     background-color: #2996CC;
+     color: white;
+     text-decoration: none;
+     font-weight: bold;
+     padding: 8px 16px;
+     border-radius: 10px;
+     transition: .4s;
+     width : 250px;
+     height: 50px;
+     margin-top: 20px;
+    }
+    button:hover {
+     background-color: white;
+     border-color: #2996CC;
+     color: #2996CC;
+    }
+  }
+}
