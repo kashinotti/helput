@@ -1,0 +1,63 @@
+.registration {
+  background-image: image-url("top_image.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 800px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  &__form {
+    color: white;
+    text-align: center;
+    background-color: rgba(128,128,128,0.6);
+    width: 700px;
+    height: 550px;
+    border-radius: 5px;
+    &--label {
+      color: white;
+      text-align: left;
+      font-size: 20px; 
+      margin-top: 20px;
+    }
+    // formの高さと幅を調整
+    input[type="text"] {
+      width: 400px;
+      height: 30px;
+      color: black;
+    }
+    input[type="email"] {
+      width: 400px;
+      height: 30px;
+      color: black;
+    }
+    input[type="password"] {
+      width: 400px;
+      height: 30px;
+      color: black;
+    }
+    &--actions {
+      padding-top: 30px;
+    }
+    &--submit {
+     display: inline-block;
+     text-align: center;
+     border: 1px solid black;
+     font-size: 2.5rem;
+     background-color: #009999;
+     color: white;
+     text-decoration: none;
+     font-weight: bold;
+     padding: 8px 16px;
+     border-radius: 10px;
+     transition: .4s;
+     width : 250px;
+     height: 50px;
+    }
+    &--submit:hover {
+       background-color: white;
+       border-color: #009999;
+       color: #009999;
+     }
+  }
+}
+
