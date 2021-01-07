@@ -36,7 +36,10 @@
 @import 'third_party/image_tui.min.css';
 @import 'third_party/spell_checker.min.css';
 
-
+.wrapper {
+  min-height: 100vh; 
+  position: relative;
+}
 
 header {
   background-color: black;
@@ -200,7 +203,6 @@ header {
 
 body {
   background-color: #F5F5F5;
-  position: relative;
 }
 
 footer {
@@ -215,4 +217,9 @@ footer {
   .footer-text {
     color: white;
   }
+}
+
+// footerとyeildの一番下が被らないようにfooterの高さ分をpadding-bottomで指定
+.spacer {
+  padding-bottom: 100px;
 }

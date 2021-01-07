@@ -11,77 +11,83 @@
   </head>
 
   <body>
-    <header>
-      <div class="header-title">
-        <h1>
-          <%= link_to 'helput', root_path %>
-        </h1>
-      </div>
-      
-      <% if user_signed_in? %>
-        <!--ナビゲーションメニュー（ハンバーガーメニューを開いた時に表示される）-->
-        <nav id="hamburger-nav">
-          <ul>
-            <li>
-              <p><%= link_to 'マイページ', user_path(current_user.id) %></p>
-            </li>
-            <li>
-              <p><%= link_to '投稿する', new_post_path %></p>
-            </li>
-            <li>
-              <p>チャット</p>
-            </li>
-            <li>
-              <p><%= link_to 'お問い合わせ', new_contact_path %></P>
-            </li>
-            <li>
-              <p><%= link_to 'ログアウト', destroy_user_session_path %></p>
-            </li>
-            <li>
-              <p><%= link_to '退会する', user_unsubscribe_path(current_user.id) %></p>
-            </li>
-          </ul>
-        </nav>
-        
-        
-        <!--ハンバーガーメニューアイコン-->
-        <div id="hamburger-icon">
-          <!--上の線-->
-          <span></span>
-          <!--真ん中の線-->
-          <span></span>
-          <!--下の線-->
-          <span></span>
+    <div class="wrapper">
+      <header>
+        <div class="header-title">
+          <h1>
+            <%= link_to 'helput', root_path %>
+          </h1>
         </div>
+        
+        <% if user_signed_in? %>
+          <!--ナビゲーションメニュー（ハンバーガーメニューを開いた時に表示される）-->
+          <nav id="hamburger-nav">
+            <ul>
+              <li>
+                <p><%= link_to 'マイページ', user_path(current_user.id) %></p>
+              </li>
+              <li>
+                <p><%= link_to '投稿する', new_post_path %></p>
+              </li>
+              <li>
+                <p>チャット</p>
+              </li>
+              <li>
+                <p><%= link_to 'お問い合わせ', new_contact_path %></P>
+              </li>
+              <li>
+                <p><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></p>
+              </li>
+              <li>
+                <p><%= link_to '退会する', user_unsubscribe_path(current_user.id) %></p>
+              </li>
+            </ul>
+          </nav>
+          
+          
+          <!--ハンバーガーメニューアイコン-->
+          <div id="hamburger-icon">
+            <!--上の線-->
+            <span></span>
+            <!--真ん中の線-->
+            <span></span>
+            <!--下の線-->
+            <span></span>
+          </div>
+        
+        <% else %>
+        <!--ログインしていない場合に表示するナビゲーションメニュー-->
+          <nav>
+            <ul class="header-list">
+              <li class="header-list__header-item">
+                <%= link_to '新規登録', new_user_registration_path %>
+              </li>
+              
+              <li class="header-list__header-item">
+                <%= link_to 'ログイン', new_user_session_path %>
+              </li>
+              
+              <li class="header-list__header-item">
+                <%= link_to 'helputについて', homes_about_path %>
+              </li>
+              
+              <li class="header-list__header-item">
+                <%= link_to 'お問い合わせ', new_contact_path %>
+              </li>
+            </ul>
+          </nav>
+        <% end %>
+      </header>
+      <%= yield %>
       
-      <% else %>
-      <!--ログインしていない場合に表示するナビゲーションメニュー-->
-        <nav>
-          <ul class="header-list">
-            <li class="header-list__header-item">
-              <%= link_to '新規登録', new_user_registration_path %>
-            </li>
-            
-            <li class="header-list__header-item">
-              <%= link_to 'ログイン', new_user_session_path %>
-            </li>
-            
-            <li class="header-list__header-item">
-              <%= link_to 'helputについて', homes_about_path %>
-            </li>
-            
-            <li class="header-list__header-item">
-              <%= link_to 'お問い合わせ', new_contact_path %>
-            </li>
-          </ul>
-        </nav>
-      <% end %>
-    </header>
-    <%= yield %>
-    <footer>
-      <p class="footer-text">
-        Copyright © ono ryota. All Rights Reserved.
-      </p>
-    </footer>
+      <!--footerとyieldの一番下が被らないようにspacerを記述-->
+      <div class="spacer">
+      </div>
+      <footer>
+        <p class="footer-text">
+          Copyright © ono ryota. All Rights Reserved.
+        </p>
+      </footer>
+    </div>
   </body>
 </html>
