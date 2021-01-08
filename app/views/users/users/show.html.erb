@@ -1,55 +1,58 @@
-<div class="user-profile">
-   <%= render partial: 'users/users/user', locals: { user: @user, post: @post, isRoom: @isRoom, roomId: @roomId, room: @room, userRoom: @userRoom } %>
-</div>
-
-<div class="wrap">
-  <ul id="tab-menu">
-    <li><a href="#tab1" class="active">自分の投稿</a></li>
-    <li><a href="#tab2" class="">タイムライン</a></li>
-    <li><a href="#tab3" class="">いいねした投稿</a></li>
-  </ul>
-
-  <div id="tab-index">
-    <div id="tab1" class="tab">
-
-      <div>
-        <%= search_form_for @q do |f| %>
-          <%= f.label :title_or_content, "投稿を検索", placeholder:"タイトルと本文のキーワードで検索できます" %>
-          <%= f.search_field :title_or_content_cont, required: true %>
-
-          <%= f.button :type => "submit" do %>
-            <i class="fas fa-search"></i>
+<div class="user-show">
+  <div class="user-show__user-profile">
+     <%= render partial: 'users/users/user', locals: { user: @user, post: @post, isRoom: @isRoom, roomId: @roomId, room: @room, userRoom: @userRoom } %>
+  </div>
+  
+  <div class="user-show__post-index">
+    <ul id="tab-menu">
+      <li><a href="#tab1" class="active">自分の投稿</a></li>
+      <li><a href="#tab2" class="">タイムライン</a></li>
+      <li><a href="#tab3" class="">いいねした投稿</a></li>
+    </ul>
+  
+    <div id="tab-index">
+      <div id="tab1" class="tab">
+  
+        <div class="tab__post-search">
+          <%= search_form_for @q do |f| %>
+            <%#= f.label :title_or_content, "投稿を検索" %>
+            <%= f.search_field :title_or_content_cont, required: true, placeholder:"投稿を検索", class: "tab__post-search--form" %>
+            <%= f.button :type => "submit" do %>
+              <i class="tab__post-search--form fas fa-search"></i>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
+  
+        <div class="tab__my-posts">
+          <% @posts.each do |post| %>
+            <article>
+              <%= post.title %>
+            </article>
+          <% end %>
+          <%= paginate @posts %>
+        </div>
       </div>
-
-      <div>
-        <% @posts.each do |post| %>
-          <div>
-            <%= post.title %>
-          </div>
-        <% end %>
+  
+      <div id="tab2" class="tab">
+        <div class="tab__timeline">
+          <% @timelines.each do |timeline| %>
+            <article>
+              <%= timeline.title %>
+            </article>
+          <% end %>
+          <%= paginate @timelines %>
+        </div>
       </div>
-    </div>
-
-    <div id="tab2" class="tab">
-      <div>
-        <% @timelines.each do |timeline| %>
-          <div>
-            <%= timeline.title %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div id="tab3" class="tab">
-      <div>
-        <% @likes.each do |like| %>
-          <% post = Post.find_by(id: like.post_id) %>
-          <div>
-            <%= post.title %>
-          </div>
-        <% end %>
+  
+      <div id="tab3" class="tab">
+        <div class="tab__likes-posts">
+          <% @likes.each do |like| %>
+            <article>
+              <%= like.post.title %>
+            </article>
+          <% end %>
+          <%= paginate @likes %>
+        </div>
       </div>
     </div>
   </div>

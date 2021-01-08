@@ -1,0 +1,50 @@
+.profile-edit {
+  width: 65%;
+  background-color: white;
+  // 中央に配置するために左右にautoを指定
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 70px;
+  h1 {
+    text-align: center;
+    padding: 25px 0 20px 0;
+  }
+  &__edit-form {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+
+    input[type="text"] {
+      width: 600px;
+      height: 30px;
+    }
+
+    &--form-area {
+      resize: vertical;
+      width: 600px;
+      height: 300px;
+    }
+
+    &--submit {
+      padding: 50px 0 30px 0;
+    }
+  }
+}
+
+.edit-field {
+  margin-bottom: 30px;
+  &__label {
+    font-size: 20px;
+    text-align: left;
+  }
+  &__label::before {
+    content: "";
+    width: 5px;
+    height: 10px;
+    margin-right: 3px;
+    background-color: #2996CC;
+    
+  }
+}

@@ -1,23 +1,37 @@
-<h1>プロフィール編集</h1>
-
-<div>
-  <%= form_with model: @user, url: user_path(@user.id), method: :patch, local: true do |f| %>
+<div class="profile-edit">
+  <h1>プロフィール編集</h1>
   
-    <div>
-      <%= f.text_field :name %>
-    </div>
+  <div class="profile-edit__edit-form">
+    <%= form_with model: @user, url: user_path(@user.id), method: :patch, local: true do |f| %>
     
-    <div>
-      <%= f.attachment_field :profile_image %>
-    </div>
-    
-    <div>
-      <%= f.text_area :introduce %>
-    </div>
-    
-    <div>
-      <%= f.submit "変更を保存する" %>
-    </div>
-    
-  <% end %>
+      <div class="edit-field">
+        <div class="edit-field__label">
+          <%= f.label :name, "ユーザー名" %>
+        </div>
+        
+        <%= f.text_field :name %>
+      </div>
+      
+      <div class="edit-field">
+        <div class="edit-field__label">
+          <%= f.label :profile_image, "プロフィール写真" %>
+        </div>
+        
+        <%= f.attachment_field :profile_image %>
+      </div>
+      
+      <div class="edit-field">
+        <div class="edit-field__label">
+          <%= f.label :introduce, "自己紹介文" %>
+        </div>
+        
+        <%= f.text_area :introduce, class: "profile-edit__edit-form--form-area" %>
+      </div>
+      
+      <div class="profile-edit__edit-form--submit">
+        <%= f.submit "変更を保存する", class: "btn btn-primary btn-lg" %>
+      </div>
+      
+    <% end %>
+  </div>
 </div>

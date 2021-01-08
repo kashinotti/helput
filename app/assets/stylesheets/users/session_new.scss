@@ -1,4 +1,4 @@
-.registration {
+.session {
   background-image: image-url("top_image.jpg");
   background-size: cover;
   width: 100%;
@@ -13,29 +13,28 @@
     width: 700px;
     height: 550px;
     border-radius: 5px;
+    h2 {
+      font-size: 45px;
+      margin-bottom: 30px;
+    }
     &--label {
       color: white;
       font-size: 20px; 
       margin-top: 20px;
     }
     // formの高さと幅を調整
-    input[type="text"] {
-      width: 400px;
-      height: 30px;
-      color: black;
-    }
     input[type="email"] {
-      width: 400px;
+      width: 450px;
       height: 30px;
       color: black;
     }
     input[type="password"] {
-      width: 400px;
+      width: 450px;
       height: 30px;
       color: black;
     }
     &--actions {
-      padding-top: 30px;
+      padding-top: 50px;
     }
     &--submit {
      display: inline-block;
@@ -60,7 +59,7 @@
   }
 }
 
-.login-link {
+.registration-link {
   padding-top: 15px;
   :hover {
     text-decoration: underline;
@@ -72,4 +71,3 @@
     color: white;
   }
 }
-
