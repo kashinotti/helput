@@ -35,7 +35,7 @@ class Users::UsersController < ApplicationController
     @timelines = Post.where(user_id: [current_user.id, current_user.followings.ids].flatten).order(created_at: :desc).page(params[:page]).per(10)
   end
   
-  def like
+  def like_post
     @user = User.find(params[:id])
     # 更新順で１０個ごとにページングできるようにorder,perメソッドで設定
     @likes = Like.where(user_id: @user.id).order(updated_at: :desc).page(params[:page]).per(10)

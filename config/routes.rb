@@ -10,7 +10,7 @@ Rails.application.routes.draw do
    root to: 'homes#top'
    get '/homes/about' => 'homes#about', as: 'homes_about'
    get 'users/timeline' => 'users#timeline', as: 'user_timeline'
-   get 'users/:id/like' => 'users#like', as: 'user_like'
+   get 'users/:id/like_post' => 'users#like_post', as: 'user_like_post'
    resources :users, only: [:show, :edit, :update] do
      get 'events/index' => 'events#index', as: 'events'
    end
