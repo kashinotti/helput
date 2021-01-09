@@ -31,6 +31,15 @@ class Users::UsersController < ApplicationController
       @userRoom = UserRoom.new
     end
   end
+  
+  def timeline
+    @timelines = Post.where(user_id: [current_user.id, current_user.followings.ids].flatten).order(created_at: :desc).page(params[:page]).per(10)
+  end
+  
+  def like
+    @user = User.find(params[:id])
+    @likes = Like.where(user_id: @user.id).page(params[:page]).per(10)
+  end
 
   def edit
     @user = User.find(params[:id])

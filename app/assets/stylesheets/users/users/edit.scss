@@ -39,12 +39,4 @@
     font-size: 20px;
     text-align: left;
   }
-  &__label::before {
-    content: "";
-    width: 5px;
-    height: 10px;
-    margin-right: 3px;
-    background-color: #2996CC;
-    
-  }
 }

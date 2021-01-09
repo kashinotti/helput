@@ -21,7 +21,15 @@
     <tr>
        <p>投稿数：<%= user.posts.count %></p>
     </tr>
-
+    
+    <tr>
+      <p><%= link_to 'タイムライン', user_timeline_path %></p>
+    </tr>
+    
+    <tr>
+      <p><%= link_to 'いいねした投稿', user_like_path(user.id) %></p>
+    </tr>
+    
     <tr>
        <p><%= link_to '予定表', user_events_path(user_id: user.id) %></p>
     </tr>

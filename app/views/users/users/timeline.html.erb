@@ -1,0 +1,14 @@
+<%= render partial: 'users/users/user', locals: { user: current_user, post: @post, isRoom: @isRoom, roomId: @roomId, room: @room, userRoom: @userRoom } %>
+
+
+<h1>タイムライン</h1>
+<div id="tab2" class="tab">
+  <div class="tab__timeline">
+    <% @timelines.each do |timeline| %>
+      <article>
+        <%= timeline.title %>
+      </article>
+    <% end %>
+    <%= paginate @timelines %>
+  </div>
+</div>
