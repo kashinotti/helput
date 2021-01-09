@@ -1,0 +1,55 @@
+.user-follow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 50px;
+  &__my-follow {
+    width: 60%;
+    margin: 0 0 50px 30px;
+    background-color: white;
+    padding: 24px;
+    
+    &--heading {
+      h1 {
+        text-align: center;
+      }
+    }
+    
+    
+    &--index {
+     .follow-user-info {
+        align-items: center;
+        padding: 10px 0;
+        &__user-name {
+          margin: 15px 0;
+          border-top: 3px solid #CCCCCC;
+          padding-top: 10px;
+          p {
+            font-size: 24px;
+            :hover {
+              color: black;
+              text-decoration: underline;
+            }
+            :active {
+              color: black;
+              text-decoration: underline;
+            }
+            :visited {
+              color: black;
+            }
+            :link {
+              color: black;
+            }
+          }
+        }
+        
+        &__paginate {
+          text-align: center;
+        }
+     }
+   }
+  }
+}
+
+
+

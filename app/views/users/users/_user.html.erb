@@ -16,13 +16,19 @@
   <table class="user-status">
     <tr>
       <td>
-        <p>フォロー：<%= link_to user.followings.count, user_follow_path(user.id) %></p>
+        <p>
+          <i class="fas fa-users"></i>
+          フォロー：<%= link_to user.followings.count, user_follow_path(user.id) %>
+        </p>
       </td>
     </tr>
 
     <tr>
       <td>
-       <p>フォロワー：<%= link_to user.followers.count, user_follower_path(user.id) %></p>
+       <p>
+         <i class="fas fa-users"></i>
+         フォロワー：<%= link_to user.followers.count, user_follower_path(user.id) %>
+        </p>
       </td>
     </tr>
 

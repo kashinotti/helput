@@ -53,13 +53,13 @@ class Users::UsersController < ApplicationController
   
   def follow_index
     @user = User.find(params[:id])
-    @followings = @user.followings.all
+    @followings = @user.followings.all.order(created_at: :desc).page(params[:page]).per(10)
   end
   
   
   def follower_index
     @user = User.find(params[:id])
-    @followers = @user.followers.all
+    @followers = @user.followers.all.order(created_at: :desc).page(params[:page]).per(10)
   end
   
   def unsubscribe
