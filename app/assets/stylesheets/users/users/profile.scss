@@ -7,24 +7,54 @@
   &__image {
     padding: 20px 0;
   }
-  p {
-    font-size: 18px;
-    :hover {
-      color: #666666;
-      text-decoration: underline;
+  &__user-name {
+    p {
+      font-size: 24px;
     }
-    :active {
-      color: #666666;
-      text-decoration: underline;
-    }
-    :visited {
-      color: #666666;
-    }
-    :link {
-      color: #666666;
+  }
+  
+  .user-status {
+    margin-left: auto;
+    margin-right: auto;
+    p {
+      font-size: 16px;
+      :hover {
+        color: #666666;
+        text-decoration: underline;
+      }
+      :active {
+        color: #666666;
+        text-decoration: underline;
+      }
+      :visited {
+        color: #666666;
+      }
+      :link {
+        color: #666666;
+      }
     }
   }
 } 
+
+  .user-status {
+    p {
+      font-size: 18px;
+      :hover {
+        color: #666666;
+        text-decoration: underline;
+      }
+      :active {
+        color: #666666;
+        text-decoration: underline;
+      }
+      :visited {
+        color: #666666;
+      }
+      :link {
+        color: #666666;
+      }
+    }
+  }
 
 .unfollow-btn {
   display: inline-block;

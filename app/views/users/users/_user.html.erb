@@ -13,83 +13,98 @@
     </p>
   </div>
 
-  <table class="profile__status">
+  <table class="user-status">
     <tr>
-      <p>フォロー：<%= link_to user.followings.count, user_follow_path(user.id) %></p>
+      <td>
+        <p>フォロー：<%= link_to user.followings.count, user_follow_path(user.id) %></p>
+      </td>
     </tr>
 
     <tr>
+      <td>
        <p>フォロワー：<%= link_to user.followers.count, user_follower_path(user.id) %></p>
+      </td>
     </tr>
 
     <tr>
+      <td>
        <p>
          <i class="fas fa-pencil-alt"></i>
          投稿数：<%= link_to user.posts.count, user_path(user.id) %>
        </p>
+      </td>
     </tr>
     
     <% if user == current_user %>
     <tr>
-      <p>
-        <i class="fas fa-stream"></i>
-        <%= link_to 'タイムライン', user_timeline_path %>
-      </p>
+      <td>
+        <p>
+          <i class="fas fa-stream"></i>
+          <%= link_to 'タイムライン', user_timeline_path %>
+        </p>
+      </td>
     </tr>
     <% end %>
     
     <tr>
-      <p>
-        <i class="fas fa-heart"></i>
-        <%= link_to 'いいねした投稿', user_like_path(user.id) %>
-      </p>
+      <td>
+        <p>
+          <i class="fas fa-heart"></i>
+          <%= link_to 'いいねした投稿', user_like_path(user.id) %>
+        </p>
+      </td>
     </tr>
     
     <tr>
-       <p>
-         <i class="fas fa-calendar-alt"></i>
-         <%= link_to '予定表', user_events_path(user_id: user.id) %>
-       </p>
+      <td>
+         <p>
+           <i class="fas fa-calendar-alt"></i>
+           <%= link_to '予定表', user_events_path(user_id: user.id) %>
+         </p>
+       </td>
     </tr>
 
     <tr>
       <% unless user.id == current_user.id %>
        <% if (current_user.following? user) && (user.following? current_user) %>
          <% if isRoom == true %>
-         <p>
-           <i class="far fa-comments"></i>
-          <%= link_to "チャット", room_path(roomId) %>
-        </
+         <td>
+           <p>
+             <i class="far fa-comments"></i>
+            <%= link_to "チャット", room_path(roomId) %>
+           </p>
+        </td>
          <% else %>
            <%= form_with model: room, url: rooms_path, method: :post, local: true do |f| %>
              <%= fields_for userRoom do |u| %>
                <%= u.hidden_field :user_id, value: user.id %>
              <% end %>
-             <%= f.submit "チャットを始める" %>
+             <td>
+               <%= f.submit "チャットを始める" %>
+             </td>
            <% end %>
          <% end %>
        <% end %>
       <% end %>
     </tr>
+  
+    <% if user.id == current_user.id %>
+    <tr>
+      <td>
+        <p>
+          <i class="fas fa-edit"></i>
+          <%= link_to "プロフィールを編集する", edit_user_path(user.id) %>
+        </p>
+      </td>
+    </tr>
+    <% end %>
   </table>
-
   
   <% if user.id != current_user.id %>
-  <div>
-   <%= render partial: 'users/relationships/follow', locals: { user: @user } %>
-  </div>
+    <div>
+      <%= render partial: 'users/relationships/follow', locals: { user: @user } %>
+    </div>
   <% end %>
-  
-  <% if user.id == current_user.id %>
-  <div>
-    <p>
-      <i class="fas fa-edit"></i>
-      <%= link_to "プロフィールを編集する", edit_user_path(user.id) %>
-    </p>
-  </div>
-  <% end %>
-  
-  
 </div>
 
 

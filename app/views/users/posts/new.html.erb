@@ -1,13 +1,18 @@
 <div class="post-new">
+  <div class="post-new__new-form">
   <%= form_with model: @post, url: posts_path, method: :post, local: true do |f| %>
 
     <div>
-      <%= f.label :title, "タイトル" %>
+      <div>
+        <%= f.label :title, "タイトル" %>
+      </div>
       <%= f.text_field :title %>
     </div>
 
     <div>
-      <%= f.label :content, "本文" %>
+      <div>
+        <%= f.label :content, "本文" %>
+      </div>
       <%= f.text_area :content, id: 'new_content_form' %>
     </div>
 
@@ -16,6 +21,7 @@
     </div>
 
   <% end %>
+  </div>
 </div>
 
 
