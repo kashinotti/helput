@@ -1,30 +1,38 @@
-.user-show {
+.timeline {
   display: flex;
   justify-content: center;
   width: 100%;
   padding-top: 50px;
-  &__my-post {
-    width: 60%;
-    margin: 0 0 50px 30px;
-    background-color: white;
-    padding: 24px;
-    
     h1 {
       text-align: center;
     }
-    
-    // 自分の投稿一覧の表示部分のレイアウト
-    &--post-search {
-      width: 800px;
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 45px;
-    }
-    
-    &--index {
-     .my-posts {
+    &__index {
+      width: 60%;
+      margin: 0 0 50px 30px;
+      background-color: white;
+      padding: 24px;
+     .timeline-posts {
         align-items: center;
         padding: 10px 0;
+        &__user {
+          p {
+            font-size: 24px;
+            :hover {
+              color: #666666;
+              text-decoration: underline;
+            }
+            :active {
+              color: #666666;
+              text-decoration: underline;
+            }
+            :visited {
+              color: #666666;
+            }
+            :link {
+              color: #666666;
+            }
+          }
+        }
         article {
           margin: 15px 0;
           border-top: 3px solid #CCCCCC;
@@ -55,8 +63,4 @@
         }
      }
    }
-  }
 }
-
-
-
