@@ -1,6 +1,9 @@
 <div class="post-new">
   
-  <h1>記事の新規投稿</h1>
+  <h1>
+    <i class="fas fa-pencil-alt"></i>
+    記事の新規投稿
+  </h1>
   
   <div class="post-new__new-form">
   <%= form_with model: @post, url: posts_path, method: :post, local: true do |f| %>
@@ -20,7 +23,7 @@
     </div>
 
     <div class="new-field__submit">
-      <%= f.submit '投稿', class: "new-filed__btn btn btn-primary btn-lg" %>
+      <%= f.submit '投稿', class: "btn btn-primary btn-lg", "data-confirm" => "投稿を完了します。よろしいですか?" %>
     </div>
 
   <% end %>

@@ -1,4 +1,4 @@
-.post-new {
+.post-edit {
   width: 65%;
   background-color: white;
   // 中央に配置するために左右にautoを指定
@@ -10,7 +10,7 @@
     text-align: center;
     padding: 25px 0 20px 0;
   }
-  &__new-form {
+  &__edit-form {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -20,20 +20,28 @@
       height: 40px;
     }
   }
-
-  .new-field {
+  
+  .edit-field {
     padding-top: 50px;
     &__label {
       margin-bottom: 8px;
       font-size: 24px;
+      text-align: center;
     }
-
+    
     &__submit {
       padding: 50px 0 30px 0;
       margin: 0 auto 0 auto;
       .btn-primary {
-        width: 100px;
+        width: 250px;
       }
+    }
+  }
+  
+  .post-delete {
+    padding-bottom: 50px;
+    .btn-danger {
+      width: 250px;
     }
   }
 }
