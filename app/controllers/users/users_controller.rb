@@ -3,10 +3,8 @@ class Users::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # 投稿一覧・タイムライン(自分とフォローユーザーの投稿を表示)いいねした投稿を表示するための変数を定義
-    @posts = @user.posts.page(params[:page]).per(10)
-    @likes = Like.where(user_id: @user.id).page(params[:page]).per(10)
-    @timelines = Post.where(user_id: [@user.id, @user.followings.ids].flatten).order(created_at: :desc).page(params[:page]).per(10)
+    # 更新順で１０個ごとにページングできるようにorder,perメソッドで設定
+    @posts = @user.posts.order(updated_at: :desc).page(params[:page]).per(10)
     # 検索フォームの値を格納するために@qを定義
     @q = Post.ransack(params[:q])
     
@@ -33,12 +31,14 @@ class Users::UsersController < ApplicationController
   end
   
   def timeline
+    # 新着順で表示できるようにorderメソッドを使用。whereで自分とフォローしているユーザーの投稿を取得
     @timelines = Post.where(user_id: [current_user.id, current_user.followings.ids].flatten).order(created_at: :desc).page(params[:page]).per(10)
   end
   
   def like
     @user = User.find(params[:id])
-    @likes = Like.where(user_id: @user.id).page(params[:page]).per(10)
+    # 更新順で１０個ごとにページングできるようにorder,perメソッドで設定
+    @likes = Like.where(user_id: @user.id).order(updated_at: :desc).page(params[:page]).per(10)
   end
 
   def edit

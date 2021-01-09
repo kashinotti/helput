@@ -1,0 +1,36 @@
+.post-new {
+  width: 65%;
+  background-color: white;
+  // 中央に配置するために左右にautoを指定
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 70px;
+  h1 {
+    text-align: center;
+    padding: 25px 0 20px 0;
+  }
+  &__new-form {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    input[type="text"] {
+      width: 800px;
+      height: 40px;
+    }
+  }
+  
+  .new-field {
+    padding-top: 50px;
+    &__label {
+      margin-bottom: 8px;
+      font-size: 24px;
+    }
+    
+    &__submit {
+      padding: 50px 0 30px 0;
+      margin: 0 auto 0 auto;
+    }
+  }
+}
