@@ -14,7 +14,7 @@ class Users::PostsController < ApplicationController
     @user = User.find(current_user.id)
     # ransackの投稿内容の検索結果を表示するための変数を定義
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true)
+    @posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show

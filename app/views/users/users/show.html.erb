@@ -10,6 +10,8 @@
           全ての投稿
         </h1>
       </div>
+      <!--自分の投稿を検索するためにマイページにのみ検索バーを表示-->
+      <% if @user.id == current_user.id %>
         <div class="user-show__my-post--post-search">
           <%= search_form_for @q do |f| %>
             
@@ -19,6 +21,7 @@
             <% end %>
           <% end %>
         </div>
+      <% end %>
         
         
         <div class='user-show__my-post--index'>
