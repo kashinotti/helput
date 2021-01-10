@@ -1,0 +1,36 @@
+.contact-complete {
+  background-color: white;
+  text-align: center;
+  height: 600px;
+  width: 900px;
+  margin: 60px auto 60px auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  
+  &__my-page-link {
+    padding-top: 80px;
+    &--btn {
+       display: inline-block;
+       text-align: center;
+       border: 1px solid black;
+       font-size: 2.5rem;
+       background-color: #FF9933;
+       color: white;
+       text-decoration: none;
+       font-weight: bold;
+       padding: 8px 16px;
+       border-radius: 10px;
+       transition: .4s;
+       width : 250px;
+       height: 50px;
+      }
+      &--btn:hover {
+       background-color: white;
+       border-color: #FF9933;
+       color: #FF9933;
+      }
+  }
+}
