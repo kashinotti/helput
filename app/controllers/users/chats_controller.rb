@@ -7,7 +7,9 @@ class Users::ChatsController < ApplicationController
         @chat = Chat.create(params.require(:chat).permit(:room_id, :user_id, :message).merge(user_id: current_user.id))
         respond_to do |format|
           format.html { redirect_to "room_path(params[:chat][:room_id])" }
-          format.json { render json: @chat }
+          # render 'chat'でchat.json.jbuilderでマッピングした値を返すようにする
+          format.json { render 'chat', handlers: 'jbuilder' }
+
         end
       else
         flash[:alert] = "メッセージ送信に失敗しました。"

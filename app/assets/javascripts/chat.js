@@ -1,4 +1,7 @@
+ 
+
 function buildHTML(chat){
+
     var html = `<div class="upper-message__user-name">
                   ${chat.user_name}
                 </div>
@@ -18,8 +21,6 @@ function scroll() {
 }
 
 
-
-
 $(document).on('turbolinks:load', function(){
   $('#new-message').on('submit', function(e){
     e.preventDefault();
@@ -29,11 +30,13 @@ $(document).on('turbolinks:load', function(){
     $.ajax({
       url: url,
       type: 'POST',
+      // リクエスト。フォームに入力された値
       data: message,
       datatype: "json",
       processData: false,
       contentType: false
     }).done(function(data){
+      // フォームで入力された値がjbuilderで返されたものがdataに入っている
       var html = buildHTML(data);
       $('.messages').append(html);
       $('.form_message').val("");

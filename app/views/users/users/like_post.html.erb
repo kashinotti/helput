@@ -16,13 +16,13 @@
             
             <div class="like-posts__user">
               <p>
-                <%= link_to like.user.name, user_path(like.user.id) %>
+                <%= link_to post.user.name, user_path(post.user.id) %>
               </p>
             </div>
             
             <div class="like-post-title">
               <p>
-                <%= attachment_image_tag like.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+                <%= attachment_image_tag post.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
                 <%= link_to like.post.title, post_path(like.user.id) %>
               </p>
             </div>
