@@ -9,6 +9,8 @@ Rails.application.routes.draw do
    }
    root to: 'homes#top'
    get '/homes/about' => 'homes#about', as: 'homes_about'
+   get 'users/timeline' => 'users#timeline', as: 'user_timeline'
+   get 'users/:id/like_post' => 'users#like_post', as: 'user_like_post'
    resources :users, only: [:show, :edit, :update] do
      get 'events/index' => 'events#index', as: 'events'
    end
@@ -40,7 +42,9 @@ Rails.application.routes.draw do
   }
   get "/homes/top" => "homes#top", as: "homes"
   resources :users, only: [:index, :show, :update]
+  get '/posts/search_index' => 'posts#search_index', as: 'search_index'
   resources :posts, only: [:index, :show, :destroy]
+  
 
   end
 end

@@ -1,0 +1,66 @@
+.timeline {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 50px;
+    h1 {
+      text-align: center;
+    }
+    &__index {
+      width: 60%;
+      margin: 0 0 50px 30px;
+      background-color: white;
+      padding: 24px;
+     .timeline-posts {
+        align-items: center;
+        padding: 10px 0;
+        &__user {
+          p {
+            font-size: 24px;
+            :hover {
+              color: #666666;
+              text-decoration: underline;
+            }
+            :active {
+              color: #666666;
+              text-decoration: underline;
+            }
+            :visited {
+              color: #666666;
+            }
+            :link {
+              color: #666666;
+            }
+          }
+        }
+        article {
+          margin: 15px 0;
+          border-top: 3px solid #CCCCCC;
+          padding-top: 10px;
+        }
+        &__post-title {
+          p {
+            font-size: 24px;
+            :hover {
+              color: black;
+              text-decoration: underline;
+            }
+            :active {
+              color: black;
+              text-decoration: underline;
+            }
+            :visited {
+              color: black;
+            }
+            :link {
+              color: black;
+            }
+          }
+        }
+        
+        &__paginate {
+          text-align: center;
+        }
+     }
+   }
+}

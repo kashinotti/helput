@@ -36,7 +36,10 @@
 @import 'third_party/image_tui.min.css';
 @import 'third_party/spell_checker.min.css';
 
-
+.wrapper {
+  min-height: 100vh; 
+  position: relative;
+}
 
 header {
   background-color: black;
@@ -80,7 +83,8 @@ header {
     text-align: right;
     &__header-item {
       padding-right: 30px;
-      
+      font-size: 18px;
+
       :visited {
         text-decoration: none;
         color: white;
@@ -91,4 +95,131 @@ header {
       }
     }
   }
+
+  #hamburger-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem;
+    opacity: 0;
+    visiblity: hidden;
+    transition: opacity .5s, visibility .5s;
+    z-index: 99;
+     ul {
+      padding-top: 80px;
+      margin-left: auto;
+      li {
+        list-style: none;
+        font-size: 30px;
+        text-decoration: none;
+        width: 100%;
+        padding: 15px;
+        text-align: center;
+        color: white;
+        p {
+          padding: 20px;
+          // link_to部分にのみ適用
+          :link {
+            // text-decoration: none;
+            color: black;
+          }
+          // link_to部分にのみ適用
+          :visited {
+            // text-decoration: none;
+            color: black;
+          }
+          // &でp要素全体に適用
+          &:hover {
+            background-color: black;
+            // link_to部分にのみ適用
+            a {
+              color: white;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // ハンバーガーメニューをクリックした時に表示されるメニューのCSS
+  #hamburger-nav.show {
+    opacity: 1;
+    visibility: visible;
+    background-color: white;
+  }
+
+  // ハンバーガーアイコンのCSS
+  #hamburger-icon {
+    display: block;
+    position: relative;
+    width: 50px;
+    height: 44px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 20px;
+    z-index: 99;
+    span {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      transition: transform .5s, opacity .5s;
+      border-radius: 4px;
+    }
+    span:nth-child(1) {
+      top: 0;
+    }
+    span:nth-child(2) {
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+    span:nth-child(3) {
+      bottom: 0px;
+    }
+  }
+
+  // ハンバーガーアイコンをクリックしたときに適用される
+  #hamburger-icon.show span:nth-child(1) {
+    transform: translateY(20px) rotate(-45deg);
+    background-color: black;
+  }
+  #hamburger-icon.show span:nth-child(2) {
+    opacity: 0;
+    background-color: black;
+  }
+  #hamburger-icon.show span:nth-child(3) {
+    transform: translateY(-20px) rotate(45deg);
+    background-color: black;
+  }
+
+}
+
+
+body {
+  background-color: #F5F5F5;
+}
+
+footer {
+  background-color: black;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+	bottom: 0;
+  .footer-text {
+    color: white;
+  }
+}
+
+// footerとyeildの一番下が被らないようにfooterの高さ分をpadding-bottomで指定
+.spacer {
+  padding-bottom: 100px;
 }

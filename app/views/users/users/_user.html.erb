@@ -1,58 +1,122 @@
-<div>
-  <div>
-    <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "50x50" %>
+<div class="profile">
+  <div class="profile__image">
+    <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "100x100" %>
   </div>
-  <div>
-    <%= user.name %>
+  <div class="profile__user-name">
+    <p>
+      <%= user.name %>
+    </p>
   </div>
-  <div>
-    <%= user.introduce %>
+  <div class="profile__introduce">
+    <p>
+      <%= user.introduce %>
+    </p>
   </div>
 
-  <table>
+  <table class="user-status">
     <tr>
-      <p>フォロー：<%= link_to user.followings.count, user_follow_path(user.id) %></p>
+      <td>
+        <p>
+          <i class="fas fa-users"></i>
+          フォロー：<%= link_to user.followings.count, user_follow_path(user.id) %>
+        </p>
+      </td>
     </tr>
 
     <tr>
-       <p>フォロワー：<%= link_to user.followers.count, user_follower_path(user.id) %></p>
+      <td>
+       <p>
+         <i class="fas fa-users"></i>
+         フォロワー：<%= link_to user.followers.count, user_follower_path(user.id) %>
+        </p>
+      </td>
     </tr>
 
     <tr>
-       <p>投稿数：<%= user.posts.count %></p>
+      <td>
+       <p>
+         <i class="fas fa-pencil-alt"></i>
+         投稿数：<%= link_to user.posts.count, user_path(user.id) %>
+       </p>
+      </td>
     </tr>
-
+    
+    <% if user == current_user %>
     <tr>
-       <p><%= link_to '予定表', user_events_path(user_id: user.id) %></p>
+      <td>
+        <p>
+          <i class="fas fa-stream"></i>
+          <%= link_to 'タイムライン', user_timeline_path %>
+        </p>
+      </td>
+    </tr>
+    <% end %>
+    
+    <tr>
+      <td>
+        <p>
+          <i class="fas fa-heart"></i>
+          <%= link_to 'いいねした投稿', user_like_post_path(user.id) %>
+        </p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+         <p>
+           <i class="fas fa-calendar-alt"></i>
+           <%= link_to '予定表', user_events_path(user_id: user.id) %>
+         </p>
+       </td>
     </tr>
 
     <tr>
       <% unless user.id == current_user.id %>
        <% if (current_user.following? user) && (user.following? current_user) %>
          <% if isRoom == true %>
-          <%= link_to "チャット", room_path(roomId) %>
+         <td>
+           <p>
+             <i class="far fa-comments"></i>
+            <%= link_to "チャット", room_path(roomId) %>
+           </p>
+        </td>
          <% else %>
            <%= form_with model: room, url: rooms_path, method: :post, local: true do |f| %>
              <%= fields_for userRoom do |u| %>
                <%= u.hidden_field :user_id, value: user.id %>
              <% end %>
-             <%= f.submit "チャットを始める" %>
+             <td>
+               <p>
+                  <i class="far fa-comments"></i>
+                 <%= f.submit "チャットを始める" %>
+               </p>
+             </td>
            <% end %>
          <% end %>
        <% end %>
       <% end %>
     </tr>
-  </table>
-
-  <div>
-    <% if user.id != current_user.id %>
-     <%= render partial: 'users/relationships/follow', locals: { user: @user } %>
-    <% end %>
-  </div>
-
-  <div>
+  
     <% if user.id == current_user.id %>
-      <%= link_to "プロフィールを編集する", edit_user_path(user.id) %>
+    <tr>
+      <td>
+        <p>
+          <i class="fas fa-edit"></i>
+          <%= link_to "プロフィールを編集する", edit_user_path(user.id) %>
+        </p>
+      </td>
+    </tr>
     <% end %>
-  </div>
+  </table>
+  
+  <% if user.id != current_user.id %>
+    <div>
+      <%= render partial: 'users/relationships/follow', locals: { user: @user } %>
+    </div>
+  <% end %>
 </div>
+
+
+
+
+

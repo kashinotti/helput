@@ -3,7 +3,7 @@
   <h1>投稿一覧（更新順）</h1>
   
   <div>
-    <%= search_form_for @q do |f| %>
+    <%= search_form_for @q, url: admins_search_index_path do |f| %>
       <%= f.label :title_or_content, "投稿を検索", placeholder:"タイトルと本文で検索できます。" %>
       <%= f.search_field :title_or_content_cont, required: true %>
       
@@ -12,6 +12,7 @@
       <% end %>
     <% end %>
   </div>
+  
   
   <div>
     <% @posts.each do |post| %>

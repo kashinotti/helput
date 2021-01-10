@@ -1,20 +1,39 @@
-<h1>投稿編集画面</h1>
+<div class="post-edit">
 
-<%= form_with model: @post, url: post_path(@post.id), method: :patch, local: true do |f| %>
-    
-    <%= f.label :title, "タイトル" %>
-    <%= f.text_field :title %>
+  <h1>
+    <i class="fas fa-edit"></i>
+    投稿編集画面
+  </h1>
 
-    <%= f.label :content, "本文" %>
-    <%= f.text_area :content, id: 'edit_content_form' %>
+  <div class="post-edit__edit-form">
+    <%= form_with model: @post, url: post_path(@post.id), method: :patch, local: true do |f| %>
 
-    <%= f.submit %>
-  <% end %>
-  
-  <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-  
-  
-  
+      <div class="edit-field">
+        <div class="edit-field__label">
+          <%= f.label :title, "タイトル" %>
+        </div>
+        <%= f.text_field :title %>
+      </div>
+
+      <div class="edit-field">
+        <div class="edit-field__label">
+          <%= f.label :content, "本文" %>
+        </div>
+          <%= f.text_area :content, id: 'edit_content_form' %>
+      </div>
+      <div class="edit-field__submit">
+        <%= f.submit '変更を保存', class: "btn btn-primary btn-lg", "data-confirm" => "変更を保存します。よろしいですか？" %>
+      </div>
+    <% end %>
+      
+      <div class="post-delete">
+        <%= link_to "投稿を削除する", post_path(@post.id), method: :delete, class: "btn btn-danger btn-lg", "data-confirm" => "本当に削除しますか？" %>
+      </div>
+  </div>
+</div>
+
+
+
   <script>
   new FroalaEditor('#edit_content_form',{
     language: 'ja',

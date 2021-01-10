@@ -1,21 +1,47 @@
-<h1>お問い合わせ</h1>
-<p>ご不明な点がありましたら、下記フォームに必要事項入力の上、お問い合わせください。</p>
+<div class="contact">
 
-<div>
-  <%= form_with model: @contact, url: contacts_path, method: :post, local: true do |f| %>
+  <div class="contact__heading">
+    <h1>
+      <i class="far fa-envelope"></i>
+      お問い合わせ
+    </h1>
+    <p>ご不明な点がありましたら、下記フォームに必要事項入力の上、お問い合わせください。</p>
+  </div>
   
-    <%= f.label :name, 'お名前(必須)' %><br>
-    <%= f.text_field :name %>
-    <br>
-    <%= f.label :email, 'メールアドレス(必須)' %><br>
-    <%= f.text_field :email %>
-    <br>
-    <%= f.label :subject, '件名(必須)' %><br>
-    <%= f.text_field :subject %>
-    <br>
-    <%= f.label :message, 'お問い合わせ内容(必須)' %><br>
-    <%= f.text_area :message %>
-    
-    <%= f.submit '送信' %>
-  <% end %>
+  
+  <div class="contact__contact-form">
+    <%= form_with model: @contact, url: contacts_path, method: :post, local: true do |f| %>
+      <div class="contact-field">
+        <div class="contact-field__label">
+          <%= f.label :name, 'お名前(必須)' %>
+        </div>
+        <%= f.text_field :name %>
+      </div>
+      
+      <div class="contact-field">
+        <div class="contact-field__label">
+          <%= f.label :email, 'メールアドレス(必須)' %><br>
+        </div>
+        <%= f.text_field :email %>
+      </div>
+      
+      <div class="contact-field">
+        <div class="contact-field__label">
+          <%= f.label :subject, '件名(必須)' %><br>
+        </div>
+        <%= f.text_field :subject %>
+      </div>
+      
+      <div class="contact-field">
+        <div class="contact-field__label">
+          <%= f.label :message, 'お問い合わせ内容(必須)' %><br>
+        </div>
+        <%= f.text_area :message, class: "contact__contact-form--form-area" %>
+      </div>
+      
+      <div class="contact__contact-form--submit">
+        <%= f.submit '送信', class: "btn btn-primary btn-lg", "data-confirm" => "内容にお間違いはありませんか?お問い合わせ内容を送信します。" %>
+      </div>
+    <% end %>
+  </div>
 </div>

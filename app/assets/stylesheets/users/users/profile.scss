@@ -1,0 +1,99 @@
+.profile {
+  width: 25%;
+  text-align: center;
+  background-color: white;
+  height: 500px;
+  
+  &__image {
+    padding: 20px 0;
+  }
+  &__user-name {
+    p {
+      font-size: 24px;
+    }
+  }
+  
+  .user-status {
+    margin-left: auto;
+    margin-right: auto;
+    p {
+      font-size: 16px;
+      :hover {
+        color: #666666;
+        text-decoration: underline;
+      }
+      :active {
+        color: #666666;
+        text-decoration: underline;
+      }
+      :visited {
+        color: #666666;
+      }
+      :link {
+        color: #666666;
+      }
+    }
+  }
+} 
+
+  .user-status {
+    p {
+      font-size: 18px;
+      :hover {
+        color: #666666;
+        text-decoration: underline;
+      }
+      :active {
+        color: #666666;
+        text-decoration: underline;
+      }
+      :visited {
+        color: #666666;
+      }
+      :link {
+        color: #666666;
+      }
+    }
+  }
+
+.unfollow-btn {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #00CCFF;
+  font-size: 1.8rem;
+  background-color: #00CCFF;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 10px;
+  transition: .4s;
+  width : 135px;
+  height: 40px;
+}
+.unfollow-btn:hover {
+  background-color: white;
+  border-color: #00CCFF;
+  color: #00CCFF;
+}
+
+.follow-btn {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #00CCFF;
+  font-size: 1.8rem;
+  background-color: white;
+  color: #00CCFF;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 10px;
+  transition: .4s;
+  width : 135px;
+  height: 40px;
+}
+.follow-btn:hover {
+  background-color: #00CCFF;
+  border-color: white;
+  color: white;
+}

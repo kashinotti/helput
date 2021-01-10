@@ -38,8 +38,7 @@ class Users::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    # 12/13現在、まだマイページを作成できていないので、とりあえず新規投稿画面へリダイレクト
-    redirect_to new_post_path
+    redirect_to user_path(current_user.id)
   end
 
   private
