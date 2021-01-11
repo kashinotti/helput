@@ -1,0 +1,39 @@
+.event-edit {
+  width: 65%;
+  background-color: white;
+  // 中央に配置するために左右にautoを指定
+  margin: 50px auto 50px auto;
+  &__heading {
+    text-align: center;
+    padding: 25px 0 20px 0;
+  }
+  &__event-edit-form {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+
+    input[type="text"] {
+      width: 600px;
+      height: 30px;
+    }
+
+    &--form-area {
+      resize: vertical;
+      width: 600px;
+      height: 300px;
+    }
+
+    &--submit {
+      padding: 50px 0 30px 0;
+    }
+  }
+}
+
+.event-edit-field {
+  margin-bottom: 30px;
+  &__label {
+    font-size: 20px;
+    text-align: left;
+  }
+}

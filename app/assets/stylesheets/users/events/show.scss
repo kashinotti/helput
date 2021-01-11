@@ -4,6 +4,9 @@
   // 中央に配置するために左右にautoを指定
   margin: 50px auto 50px auto;
   text-align: center;
+  h1 {
+    padding-top: 24px;
+  }
   &__field {
     width: 500px;
     margin: 0 0 0 100px;

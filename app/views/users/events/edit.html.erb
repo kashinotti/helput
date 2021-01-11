@@ -1,32 +1,45 @@
-<div class="event-edit"></div>
+<div class="event-edit">
+  <div class="event-edit__heading">
+    <h1>
+      <i class="far fa-calendar-alt"></i>
+      予定の追加
+    </h1>
+  </div>
 
-  <%= form_with model: @event, url: event_path(@event.id), method: :patch, local: true do |f| %>
-  
-    <%= f.label :title, '予定のタイトル' %>
-    <br>
-    <%= f.text_field :title %>
-  
-    <br>
-  
-    <%= f.label :content, '予定の詳細' %>
-    <br>
-    <%= f.text_area :content %>
-  
-    <br>
-  
-    <%= f.label :start_date, '開始時間' %>
-    <br>
-    <%= f.datetime_select :start_date, {use_month_numbers: true, start_year: Date.today.year} %>
-  
-    <br>
-  
-    <%= f.label :end_date, '終了時間' %>
-    <br>
-    <%= f.datetime_select :end_date, {use_month_numbers: true, start_year: Date.today.year} %>
-  
-    <br>
-  
-    <%= f.submit '予定を変更' %>
-  
-  <% end %>
+  <div class="event-edit__event-edit-form">
+    <%= form_with model: @event, url: event_path(@event.id), method: :patch, local: true do |f| %>
+      <div class="event-edit-field">
+        <div class="event-edit-field__label">
+          <%= f.label :title, '予定のタイトル' %>
+        </div>
+        <%= f.text_field :title %>
+      </div>
+
+    <div class="event-edit-field">
+      <div class="event-edit-field__label">
+        <%= f.label :content, '予定の詳細' %>
+      </div>
+      <%= f.text_area :content, class: "event-edit__event-edit-form--form-area" %>
+    </div>
+
+    <div class="event-edit-field">
+      <div class="event-edit-field__label">
+        <%= f.label :start_date, '開始時間' %>
+      </div>
+      <%= f.datetime_select :start_date, {use_month_numbers: true, start_year: Date.today.year} %>
+    </div>
+
+    <div class="event-edit-field">
+      <div class="event-edit-field__label">
+        <%= f.label :end_date, '終了時間' %>
+      </div>
+      <%= f.datetime_select :end_date, {use_month_numbers: true, start_year: Date.today.year} %>
+    </div>
+
+    <div class="event-edit__event-edit-form--submit">
+      <%= f.submit '変更を保存', class: "btn btn-primary btn-lg" %>
+    </div>
+    <% end %>
+  </div>
 </div>
+
