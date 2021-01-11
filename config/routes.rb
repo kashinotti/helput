@@ -23,6 +23,7 @@ Rails.application.routes.draw do
      resources :comments, only: [:create, :destroy, :show]
      post '/comments/replies' => 'comments#replies', as: 'comments_replies'
    end
+   get '/posts/:id/show_like_users' => 'posts#show_like_users', as: 'show_like_users'
    get '/posts/confirm' => 'posts#confirm', as: 'posts_confirm'
   resources :relationships, only: [:destroy, :create]
   resources :chats, only: [:create]

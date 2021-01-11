@@ -1,0 +1,180 @@
+.post-show-flash {
+  color: red;
+  font-size: 24px;
+  text-align: center;
+}
+
+.post-show {
+  width: 70%;
+  background-color: white;
+  margin: 50px auto 50px auto;
+  .post-detail {
+    padding: 24px;
+    &__user-name {
+      padding-bottom: 15px;
+      font-size: 20px;
+    }
+    &__created_at {
+      padding-botom: 15px;
+    }
+    &__post-title {
+      font-size: 34px;
+      p::after {
+        content: "";
+        display: block;
+        height: 3px;
+        background-color: #555555;
+      }
+    }
+    &__post-content {
+      &--main {
+       padding-top: 30px;
+       min-height: 200px;
+      }
+      &--option {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 80px;
+        .post-like {
+          display: flex;
+          text-align: center;
+          p {
+            font-size: 16px;
+          }
+        }
+        .post-edit-link {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+.comment-heading {
+  width: 70%;
+  margin: 50px auto 50px auto;
+}
+
+.comment {
+  width: 70%;
+  margin: 50px auto 50px auto;
+  padding-bottom: 15px;
+  background-color: white;
+  &__comment-area {
+    background-color: white;
+    &--name {
+      font-size: 20px;
+      :hover {
+        color: black;
+        text-decoration: underline;
+      }
+      :active {
+        color: black;
+        text-decoration: underline;
+      }
+      :visited {
+        color: black;
+      }
+      :link {
+        color: black;
+      }
+    }
+    &--comment {
+      padding-left: 50px;
+      min-height: 50px;
+    }
+    &--created_at {
+      text-align: right;
+      border-bottom: 3px solid #CCCCCC;
+    }
+    &--delete {
+        text-align: right;
+    }
+  }
+
+  &__reply-area {
+    border-bottom: 3px solid #CCCCCC;
+    background-color: white;
+    padding-left: 100px;
+    &--to {
+      padding: 10px 0 0 100px;
+      p {
+        :hover {
+          color: black;
+          text-decoration: underline;
+        }
+        :active {
+          color: black;
+          text-decoration: underline;
+        }
+        :visited {
+          color: black;
+        }
+        :link {
+          color: black;
+        }
+      }
+    }
+    &--name {
+      font-size: 20px;
+      padding-left: 100px;
+      :hover {
+        color: black;
+        text-decoration: underline;
+      }
+      :active {
+        color: black;
+        text-decoration: underline;
+      }
+      :visited {
+        color: black;
+      }
+      :link {
+        color: black;
+      }
+    }
+    &--comment {
+      padding-left: 150px;
+      min-height: 50px;
+    }
+    &--created_at {
+      text-align: right;
+      border-bottom: 3px solid #CCCCCC;
+    }
+    &--delete {
+        text-align: right;
+    }
+
+    &--new-reply {
+      text-align: center;
+      padding: 10px 0 10px 0;
+    }
+  }
+}
+
+.reply-form {
+  resize: vertical;
+  width: 400px;
+  height: 65px;
+}
+
+.new-comment {
+  width: 70%;
+  margin: 50px auto 50px auto;
+  h3 {
+    text-align: center;
+  }
+  &__new-field {
+    display: flex;
+    justify-content: center;
+    &--submit {
+      text-align: center;
+    }
+  }
+  .comment-form {
+    resize: vertical;
+    width: 500px;
+    height: 120px;
+  }
+}

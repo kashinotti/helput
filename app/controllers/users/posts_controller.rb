@@ -24,6 +24,11 @@ class Users::PostsController < ApplicationController
     @comment = @post.comments.new
     @comment_reply = @post.comments.new
   end
+  
+  def show_like_users
+    @post = Post.find(params[:id])
+    @likes = Like.where(post_id: @post.id).order(updated_at: :desc).page(params[:page]).per(10)
+  end
 
   def edit
     @post = Post.find(params[:id])
