@@ -1,35 +1,55 @@
-<!--<h4><%#= @useRoom.user.name %></h4>-->
 
-<% @userRooms.each do |userRoom| %>
-  <div>
-    <%#= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "50x50" %>
-    <%= link_to userRoom.user.name, user_path(userRoom.user.id) %>
-  </div>
-<% end %>
-
-<div class="messages">
-  <% if @chats.present? %>
-    <% @chats.each do |chat| %>
-      <div>
-        <%#= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "50x50" %>
-      </div>
-      <div>
-        <%= chat.user.name %>
-        <%= chat.message %>
-        <%= chat.created_at.strftime("%Y-%m-%d %H:%M") %>
+<div class="room">
+  <div class="room__heading">
+    <h1>チャットルーム</h1>
+    <p>参加者</p>
+    <% @userRooms.each do |userRoom| %>
+      <div class="room__heading--participant">
+        <%= attachment_image_tag userRoom.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+        <%= link_to userRoom.user.name, user_path(userRoom.user.id) %>
       </div>
     <% end %>
-  <% end %>
+  </div>
+  <div class="messages">
+    <% if @chats.present? %>
+      <% @chats.each do |chat| %>
+      <div class="message">
+        <div class="upper-message">
+          <div class="upper-message__user-name">
+            <p><%= chat.user.name %></p>
+          </div>
+          <div class="upper-message__content">
+            <p><%== chat.message %></p>
+          </div>
+          <div class="lower-message__created">
+            <p><%= chat.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="room__message-form">
+    <%= form_with model: @chat, url: "#{chats_path}.json", method: :post, id: "new-message", local: true do |f| %>
+      <%= f.text_area :message, class: "form_message", id: "chat-form" %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <div class="room__message-form--submit">
+        <p><%= f.submit "送信", class: "form_submit btn btn-primary" %></p>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 
-<div>
-  <%= form_with model: @chat, url: "#{chats_path}.json", method: :post, id: "new-message", local: true do |f| %>
-    <%= f.text_area :message, class: "form_message" %>
-    <%= f.hidden_field :room_id, value: @room.id %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <div>
-      <p><%= f.submit "送信", class: "form_submit" %></p>
-    </div>
-  <% end %>
-</div>
+<script>
+  new FroalaEditor('#chat-form',{
+    language: 'ja',
+    imageUploadURL: '/upload_image',
+    imageUploadParams: {
+      id: 'my_editor'
+    },
+    emoticonsUseImage: false
+  });
+</script>
