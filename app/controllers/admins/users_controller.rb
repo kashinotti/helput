@@ -1,7 +1,7 @@
 class Admins::UsersController < ApplicationController
-  
+  layout 'admins'
   def index
-    @users = User.all
+    @users = User.all.order(updated_at: :desc).page(params[:page]).per(10)
   end
   
   

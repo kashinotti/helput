@@ -29,7 +29,7 @@ class Users::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @likes = Like.where(post_id: @post.id).order(updated_at: :desc).page(params[:page]).per(10)
   end
-
+  
   def edit
     @post = Post.find(params[:id])
   end

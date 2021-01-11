@@ -11,4 +11,5 @@ class Users::LikesController < ApplicationController
     @like = current_user.likes.find_by(post_id: @post.id, id: params[:id])
     @like.destroy
   end
+  
 end

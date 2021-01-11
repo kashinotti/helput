@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Helput</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="header-title">
+          <h1>
+            <%= link_to 'helput', admins_homes_path %>
+          </h1>
+        </div>
+        <% if admins_admin_signed_in? %>
+          <nav>
+            <ul class="header-list">
+              <li class="header-list__header-item">
+                <%= link_to 'ログアウト', destroy_admins_admin_session_path, method: :delete %>
+              </li>
+              
+              <li class="header-list__header-item">
+                <%= link_to '投稿一覧', admins_posts_path %>
+              </li>
+              
+              <li class="header-list__header-item">
+                <%= link_to 'ユーザー一覧', admins_users_path %>
+              </li>
+            </ul>
+          </nav>
+        <% else %>
+          <nav>
+            <ul class="header-list">
+              <li class="header-list__header-item">
+                <%= link_to 'ログイン', new_admins_admin_session_path %>
+              </li>
+            </ul>
+          </nav>
+        <% end %>
+        
+      </header>
+      <%= yield %>
+      
+      <!--footerとyieldの一番下が被らないようにspacerを記述-->
+      <div class="spacer">
+      </div>
+      <footer>
+        <p class="footer-text">
+          Copyright © ono ryota. All Rights Reserved.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

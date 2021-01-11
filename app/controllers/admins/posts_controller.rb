@@ -1,7 +1,7 @@
 class Admins::PostsController < ApplicationController
-
+  layout 'admins'
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.all.order(created_at: :desc).order(updated_at: :desc).page(params[:page]).per(10)
      # ransackの投稿内容の検索結果を表示するための変数を定義
     @q = @posts.ransack(params[:q])
     @search_posts = @q.result(distinct: true)
@@ -11,7 +11,7 @@ class Admins::PostsController < ApplicationController
     # ransackの投稿内容の検索結果を表示するための変数を定義
      @q = Post.ransack(params[:q])
      # byebug
-     @posts = @q.result(distinct: true)
+     @posts = @q.result(distinct: true).order(created_at: :desc).order(updated_at: :desc).page(params[:page]).per(10)
   end
   
   def show
