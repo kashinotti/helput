@@ -1,0 +1,26 @@
+.event-show {
+  width: 65%;
+  background-color: white;
+  // 中央に配置するために左右にautoを指定
+  margin: 50px auto 50px auto;
+  text-align: center;
+  &__field {
+    width: 500px;
+    margin: 0 0 0 100px;
+    text-align: left;
+    &--head {
+      .head-icon {
+        color: #2996CC;
+      }
+    }
+    &--content {
+      min-height: 150px;
+    }
+  }
+  &__button {
+    padding: 30px 0 30px 0;
+    .event-button {
+      width: 120px;
+    }
+  }
+}
