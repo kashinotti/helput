@@ -1,8 +1,8 @@
 <div class="user-show">
-  
+
   <%= render partial: 'users/users/user', locals: { user: @user, post: @post, isRoom: @isRoom, roomId: @roomId, room: @room, userRoom: @userRoom } %>
 
-  
+
   <div class="user-show__my-post">
       <div>
         <h1>
@@ -14,7 +14,7 @@
       <% if @user.id == current_user.id %>
         <div class="user-show__my-post--post-search">
           <%= search_form_for @q do |f| %>
-            
+
             <%= f.search_field :title_or_content_cont, required: true, placeholder:"投稿を検索", class: "tab__post-search--form" %>
             <%= f.button :type => "submit" do %>
               <i class="tab__post-search--form fas fa-search"></i>
@@ -22,32 +22,32 @@
           <% end %>
         </div>
       <% end %>
-        
-        
+
+
         <div class='user-show__my-post--index'>
           <div class="my-posts">
-            
+
             <% @posts.each do |post| %>
               <article>
-                
+
                 <div class="my-posts__post-title">
                   <p><%= link_to post.title, post_path(post.id) %></p>
                 </div>
-                
+
                 <div class="my-posts__post-info">
                   <i class="fas fa-heart"></i><%= post.likes.count %>
                   |
                   作成日:<%= post.created_at.strftime('%Y/%m/%d') %>
                 </div>
-                
+
               </article>
             <% end %>
-            
+
             <div class="my-posts__paginate">
               <%= paginate @posts %>
             </div>
           </div>
         </div>
-        
+
   </div>
 </div>

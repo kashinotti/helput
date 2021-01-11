@@ -1,0 +1,15 @@
+.calendar {
+  width: 65%;
+  background-color: white;
+  // 中央に配置するために左右にautoを指定
+  margin: 50px auto 70px auto;
+  h1 {
+    text-align: center;
+  }
+  &__event-add {
+    padding: 0 0 0 20px;
+  }
+  &__schedule {
+    padding: 24px;
+  }
+}

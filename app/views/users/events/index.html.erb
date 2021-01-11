@@ -1,7 +1,31 @@
+<div class="calendar">
+  <h1>
+    <%= @user.name %>の予定表
+  </h1>
+  <% if @user.id == current_user.id %>
+    <div class="calendar__event-add">
+      <%= link_to "予定を追加", new_event_path, class: "btn btn-warning" %>
+    </div>
+  <% end %>
+  <!--カレンダーを表示-->
+  <div class="calendar__schedule">
+    <div id="calendar"></div>
+  </div>
+</div>
 
-<%= link_to "予定を追加", new_event_path %>
 
-<div id="calendar"></div>
 
 <!--カレンダーにイベント表示させるために、ルーティングに@user.idをcalendar.jsに送るために記述-->
 <input class="events_user" type="hidden" value="<%= @user.id %>">
+
+
+
+
+
+<!--ブラウザバックすると、カレンダー描画後のキャッシュされた状態に戻ってさらに描画される結果、二重描画になってしまうのでturbolinks:before-cacheイベントを使用-->
+  <script>
+    document.addEventListener('turbolinks:before-cache', function() {
+     $('#calendar').empty()
+     return
+   })
+ </script>
