@@ -2,7 +2,7 @@
     
     <div class="ad-user-index__heading">
       <h1>
-        ユーザー一覧
+        <%= @users.count %>の検索結果
       </h1>
     </div>
     
@@ -17,6 +17,7 @@
       <% end %>
     </div>
     
+    <% if @users.count >= 1 %>
     <div class="ad-user-index__index">
       <div class="ad-user-info">
         <% @users.each do |user| %>
@@ -33,7 +34,9 @@
         <%= paginate @users %>
       </div>
     </div>
-    
+     <% else %>
+      <div class="no-result">
+        <h3>キーワードに一致する記事は見つかりませんでした。</h3>
+      </div>
+    <% end %>
   </div>
-
-

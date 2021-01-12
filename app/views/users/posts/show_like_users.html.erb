@@ -6,21 +6,27 @@
       </h1>
     </div>
     
-    <div class="post-like-users__index">
-      <div class="like-user-info">
-        <% @likes.each do |like| %>
-        
-          <div class="like-user-info__user-name">
-            <p>
-              <%= attachment_image_tag like.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
-              <%= link_to like.user.name, user_path(like.user.id) %>
-            </p>
+    <% if @likes.count >= 1 %>
+      <% @likes.each do |like| %>
+        <div class="post-like-users__index">
+          <div class="like-user-info">
+            <div class="like-user-info__user-name">
+              <p>
+                <%= attachment_image_tag like.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+                <%= link_to like.user.name, user_path(like.user.id) %>
+              </p>
+            </div>
           </div>
-        <% end %>
-      </div>
-      <div class="like-user-info__paginate">
-        <%= paginate @likes %>
-      </div>
+          
+          <div class="like-user-info__paginate">
+            <%= paginate @likes %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+    <div class="no-result">
+      <h3>いいねしたユーザーはいません</h3>
     </div>
+    <% end %>
     
   </div>

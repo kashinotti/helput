@@ -42,8 +42,9 @@ Rails.application.routes.draw do
     sessions: 'admins/sessions'
   }
   get "/homes/top" => "homes#top", as: "homes"
+  get '/users/search_user_index' => 'users#search_user_index', as: 'search_user_index'
   resources :users, only: [:index, :show, :update]
-  get '/posts/search_index' => 'posts#search_index', as: 'search_index'
+  get '/posts/search_post_index' => 'posts#search_post_index', as: 'search_post_index'
   resources :posts, only: [:index, :show, :destroy]
   
 

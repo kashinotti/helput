@@ -7,10 +7,9 @@ class Admins::PostsController < ApplicationController
     @search_posts = @q.result(distinct: true)
   end
 
-  def search_index
+  def search_post_index
     # ransackの投稿内容の検索結果を表示するための変数を定義
      @q = Post.ransack(params[:q])
-     # byebug
      @posts = @q.result(distinct: true).order(created_at: :desc).order(updated_at: :desc).page(params[:page]).per(10)
   end
   

@@ -8,15 +8,15 @@
     </div>
     
     <div>
-    <%= search_form_for @q, url: admins_search_index_path do |f| %>
-      <%= f.label :title_or_content, "投稿を検索", placeholder:"タイトルと本文で検索できます。" %>
-      <%= f.search_field :title_or_content_cont, required: true %>
-      
-      <%= f.button :type => "submit" do %>
-        <i class="fas fa-search"></i>
+      <%= search_form_for @q, url: admins_search_post_index_path do |f| %>
+        <%= f.label :title_or_content, "投稿を検索", placeholder:"タイトルと本文で検索できます。" %>
+        <%= f.search_field :title_or_content_cont, required: true %>
+        
+        <%= f.button :type => "submit" do %>
+          <i class="fas fa-search"></i>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
     
     <div class="ad-post-index__index">
       <div class="ad-post-info">
