@@ -38,9 +38,7 @@
           </div>
 
           <div class="ad-post-edit-link">
-            <% if @post.user_id == current_user.id %>
-              <%= link_to "削除する", admins_post_path(@post.id), method: :delete, class: "btn btn-info", "data-confirm" => "この投稿を削除します。よろしいですか？" %>
-            <% end %>
+              <%= link_to "削除する", admins_post_path(@post.id), method: :delete, class: "btn btn-danger", "data-confirm" => "この投稿を削除します。よろしいですか？" %>
           </div>
         </div>
       </div>
