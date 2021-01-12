@@ -47,7 +47,10 @@ Rails.application.routes.draw do
   get '/users/:id/follower_index' => 'users#follower_index', as: 'user_follower'
   resources :users, only: [:index, :show, :update]
   get '/posts/search_post_index' => 'posts#search_post_index', as: 'search_post_index'
-  resources :posts, only: [:index, :show, :destroy]
+  resources :posts, only: [:index, :show, :destroy] do
+    resources :comments, only: [:destroy]
+  end
+  get '/posts/:id/show_like_users' => 'posts#show_like_users', as: 'show_like_users'
   
 
   end

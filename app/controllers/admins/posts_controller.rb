@@ -15,6 +15,15 @@ class Admins::PostsController < ApplicationController
   
   def show
     @post = Post.find(params[:id])
+    @like = @post.likes.find_by(user_id: current_user.id)
+    @comments = @post.comments.where(parent_id: nil)
+    @comment = @post.comments.new
+    @comment_reply = @post.comments.new
+  end
+  
+  def show_like_users
+    @post = Post.find(params[:id])
+    @likes = Like.where(post_id: @post.id).order(updated_at: :desc).page(params[:page]).per(10)
   end
 
   def destroy

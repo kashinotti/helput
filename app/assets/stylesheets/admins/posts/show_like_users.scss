@@ -1,15 +1,4 @@
-// Place all the styles related to the admins::posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-
-.ad-post-flash {
-  color: red;
-  font-size: 24px;
-  text-align: center;
-}
-// 投稿一覧と検索結果のcssを共有
-.ad-post-index {
+.ad-post-like-users {
     width: 65%;
     background-color: white;
     // 中央に配置するために左右にautoを指定
@@ -17,12 +6,13 @@
     &__heading {
       h1 {
         text-align: center;
+        padding-top: 50px;
       }
     }
     
     &__index {
       padding: 20px;
-     .ad-post-info {
+     .ad-like-user-info {
         align-items: center;
         padding: 10px 0;
         &__user-name {
