@@ -40,7 +40,7 @@
        </p>
       </td>
     </tr>
-    
+
     <% if user == current_user %>
     <tr>
       <td>
@@ -51,7 +51,7 @@
       </td>
     </tr>
     <% end %>
-    
+
     <tr>
       <td>
         <p>
@@ -60,7 +60,7 @@
         </p>
       </td>
     </tr>
-    
+
     <tr>
       <td>
          <p>
@@ -96,7 +96,7 @@
        <% end %>
       <% end %>
     </tr>
-  
+
     <% if user.id == current_user.id %>
     <tr>
       <td>
@@ -108,7 +108,7 @@
     </tr>
     <% end %>
   </table>
-  
+
   <% if user.id != current_user.id %>
     <div>
       <%= render partial: 'users/relationships/follow', locals: { user: @user } %>

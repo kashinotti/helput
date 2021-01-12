@@ -1,0 +1,33 @@
+<div class="ad-user-follower">
+
+  <%= render partial: 'admins/users/user', locals: { user: @user } %>
+
+  <div class="ad-user-follower__user-follower">
+
+    <div class="ad-user-follower__user-follower--heading">
+      <h1>
+        <i class="fas fa-users"></i>
+        <%= @user.name %>のフォロワー
+      </h1>
+    </div>
+
+    <div class="ad-user-follower__user-follower--index">
+      <div class="ad-follower-user-info">
+        <% @followers.each do |follower| %>
+
+          <div class="ad-follower-user-info__user-name">
+            <p>
+              <%= attachment_image_tag follower, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+              <%= link_to follower.name, admins_user_path(follower.id) %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="ad-follower-user-info__paginate">
+      <%= paginate @followers %>
+    </div>
+
+  </div>
+</div>
