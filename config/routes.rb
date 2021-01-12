@@ -11,7 +11,8 @@ Rails.application.routes.draw do
    get '/homes/about' => 'homes#about', as: 'homes_about'
    get 'users/timeline' => 'users#timeline', as: 'user_timeline'
    get 'users/:id/like_post' => 'users#like_post', as: 'user_like_post'
-   resources :users, only: [:show, :edit, :update] do
+   get '/users/search_user_index' => 'users#search_user_index', as: 'search_user_index'
+   resources :users, only: [:index, :show, :edit, :update] do
      get 'events/index' => 'events#index', as: 'events'
    end
    get '/users/:id/follow_index' => 'users#follow_index', as: 'user_follow'

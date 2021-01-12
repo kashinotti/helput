@@ -1,8 +1,8 @@
-<div class="ad-user-index">
+<div class="user-index">
     
-    <div class="ad-user-index__heading">
+    <div class="user-index__heading">
       <h1>
-        ユーザー一覧
+        ユーザー検索
       </h1>
     </div>
     
@@ -17,11 +17,11 @@
       <% end %>
     </div>
     
-    <div class="ad-user-index__index">
-      <div class="ad-user-info">
+    <div class="user-index__index">
+      <div class="user-info">
         <% @users.each do |user| %>
         
-          <div class="ad-user-info__user-name">
+          <div class="user-info__user-name">
             <p>
               <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
               <%= link_to user.name, admins_user_path(user.id) %>
@@ -29,7 +29,7 @@
           </div>
         <% end %>
       </div>
-      <div class="ad-user-info__paginate">
+      <div class="user-info__paginate">
         <%= paginate @users %>
       </div>
     </div>
