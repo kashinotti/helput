@@ -1,5 +1,5 @@
 class Users::PostsController < ApplicationController
-
+  before_action :authenticate_user!
   def new
     @post = Post.new
   end
@@ -32,6 +32,14 @@ class Users::PostsController < ApplicationController
   
   def edit
     @post = Post.find(params[:id])
+    # 他のユーザーがアクセスしようとしたときに遷移させないために条件分岐
+    if @post.user_id != current_user.id
+      if user_signed_in?
+        redirect_to user_path(current_user.id)
+      else
+        new_user_session_path
+      end
+    end
   end
 
   def update

@@ -49,9 +49,10 @@
     </div>
   </div>
   
-  
-  <div class="event-show__button">
-    <%= link_to "予定を編集する", edit_event_path(@event.id), class: "event-button btn btn-primary" %>
-    <%= link_to "予定の削除", event_path(@event.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "event-button btn btn-danger" %>
-  </div>
+  <% if @event.user_id == current_user.id %>
+    <div class="event-show__button">
+      <%= link_to "予定を編集する", edit_event_path(@event.id), class: "event-button btn btn-primary" %>
+      <%= link_to "予定の削除", event_path(@event.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "event-button btn btn-danger" %>
+    </div>
+  <% end %>
 </div>

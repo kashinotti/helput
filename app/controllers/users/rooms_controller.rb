@@ -1,5 +1,5 @@
 class Users::RoomsController < ApplicationController
-
+  
   def create
     @room = Room.create
     @userRoom1 = UserRoom.create(room_id: @room.id, user_id: current_user.id)

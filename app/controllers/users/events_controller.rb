@@ -1,5 +1,5 @@
 class Users::EventsController < ApplicationController
-
+  before_action :authenticate_user!
 
   def new
     @event = Event.new
@@ -29,8 +29,13 @@ class Users::EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
-    unless @event.user_id == current_user.id
-      redirect_to root_path
+    # 他のユーザーがアクセスしようとしたときに遷移させないために条件分岐
+    if @event.user_id != current_user.id
+      if user_signed_in?
+        redirect_to user_path(current_user.id)
+      else
+        new_user_session_path
+      end
     end
   end
 

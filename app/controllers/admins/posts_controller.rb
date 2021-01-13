@@ -1,5 +1,6 @@
 class Admins::PostsController < ApplicationController
   layout 'admins'
+  before_action :authenticate_user!
   def index
     @posts = Post.all.order(created_at: :desc).order(updated_at: :desc).page(params[:page]).per(10)
      # ransackの投稿内容の検索結果を表示するための変数を定義

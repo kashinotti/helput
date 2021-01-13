@@ -1,5 +1,5 @@
 class Users::UsersController < ApplicationController
-
+  before_action :authenticate_user!
 
 
   def index
@@ -56,6 +56,14 @@ class Users::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    # 他のユーザーがアクセスしようとしたときに遷移させないために条件分岐
+    if @user.id != current_user.id
+      if user_signed_in?
+        redirect_to user_path(current_user.id)
+      else
+        new_user_session_path
+      end
+    end
   end
 
   def update
