@@ -11,6 +11,7 @@
   
   <div class="contact__contact-form">
     <%= form_with model: @contact, url: contacts_path, method: :post, local: true do |f| %>
+    <%= render partial: 'layouts/error_messages', locals: { model: f.object } %>
       <div class="contact-field">
         <div class="contact-field__label">
           <%= f.label :name, 'お名前(必須)' %>

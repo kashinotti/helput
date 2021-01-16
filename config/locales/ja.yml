@@ -42,6 +42,7 @@ ja:
       post: 投稿
       chat: チャット
       comment: コメント
+      contact: お問い合わせ
     attributes:
       user:
         name: 名前
@@ -59,3 +60,8 @@ ja:
         message: メッセージ
       comment:
         comment: コメント
+      contact:
+        name: お名前
+        email: メールアドレス
+        subject: 件名
+        message: お問い合わせ内容
