@@ -83,12 +83,15 @@
       padding-left: 50px;
       min-height: 50px;
     }
+    &--reply {
+      text-align: right;
+    } 
     &--created_at {
       text-align: right;
       border-bottom: 3px solid #CCCCCC;
     }
     &--delete {
-        text-align: right;
+      text-align: right;
     }
   }
 
@@ -145,9 +148,8 @@
         text-align: right;
     }
 
-    &--new-reply {
-      text-align: center;
-      padding: 10px 0 10px 0;
+    &--reply {
+      text-align: right;
     }
   }
 }

@@ -20,6 +20,10 @@ class User < ApplicationRecord
   has_many :chats, dependent: :destroy
   
   
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :introduce, length: { maximum: 500 }
+  
   
   def follow(other_user)
     unless self == other_user

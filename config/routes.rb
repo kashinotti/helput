@@ -16,13 +16,14 @@ Rails.application.routes.draw do
      get 'events/index' => 'events#index', as: 'events'
    end
    get '/users/:id/follow_index' => 'users#follow_index', as: 'user_follow'
-   get '/users/:id/follower_index' => 'users#follower_index', as: 'user_follower' 
+   get '/users/:id/follower_index' => 'users#follower_index', as: 'user_follower'
    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'user_unsubscribe'
    patch '/users/:id/withdraw' => 'users#withdraw', as: 'user_withdraw'
    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
      resources :likes, only: [:create, :destroy]
-     resources :comments, only: [:create, :destroy, :show]
-     post '/comments/replies' => 'comments#replies', as: 'comments_replies'
+     resources :comments, only: [:create, :destroy]
+     get '/comments/:id/new_reply' => 'comments#new_reply', as: 'new_reply'
+     post '/comments/:id/reply_create' => 'comments#reply_create', as: 'reply_create'
    end
    get '/posts/:id/show_like_users' => 'posts#show_like_users', as: 'show_like_users'
    get '/posts/confirm' => 'posts#confirm', as: 'posts_confirm'
@@ -37,11 +38,11 @@ Rails.application.routes.draw do
   post "/upload_image" => "upload#upload_image", :as => :upload_image
   get "/download_file/:name" => "upload#access_file", :as => :upload_access_file, :name => /.*/
 
-
-  namespace :admins do
   devise_for :admins, controllers: {
     sessions: 'admins/sessions'
   }
+
+  namespace :admins do
   get "/homes/top" => "homes#top", as: "homes"
   get '/users/search_user_index' => 'users#search_user_index', as: 'search_user_index'
   get '/users/:id/follow_index' => 'users#follow_index', as: 'user_follow'
@@ -52,7 +53,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:destroy]
   end
   get '/posts/:id/show_like_users' => 'posts#show_like_users', as: 'show_like_users'
-  
+
 
   end
 end

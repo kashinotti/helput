@@ -8,6 +8,7 @@
 
   <div class="event-edit__event-edit-form">
     <%= form_with model: @event, url: event_path(@event.id), method: :patch, local: true do |f| %>
+      <%= render partial: 'layouts/error_messages', locals: { model: f.object } %>
       <div class="event-edit-field">
         <div class="event-edit-field__label">
           <%= f.label :title, '予定のタイトル' %>

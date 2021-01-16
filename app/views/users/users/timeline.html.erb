@@ -14,13 +14,13 @@
             
             <div class="timeline-posts__user">
               <p>
+                <%= attachment_image_tag timeline.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
                 <%= link_to timeline.user.name, user_path(timeline.user.id) %>
               </p>
             </div>
             
             <div class="timeline-posts__post-title">
               <p>
-                <%= attachment_image_tag timeline.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
                 <%= link_to timeline.title, post_path(timeline.id) %>
               </p>
             </div>

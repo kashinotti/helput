@@ -1,0 +1,41 @@
+.wrapper-comment {
+  width: 65%;
+  background-color: white;
+  margin: 50px auto 50px auto;
+
+  &__comment-area {
+    margin: 20px auto 15px auto;
+    width: 60%;
+    padding-top: 15px;
+    &--name {
+      font-size: 20px;
+      :hover {
+        color: black;
+        text-decoration: underline;
+      }
+      :active {
+        color: black;
+        text-decoration: underline;
+      }
+      :visited {
+        color: black;
+      }
+      :link {
+        color: black;
+      }
+    }
+    &--comment {
+      padding-left: 50px;
+      min-height: 50px;
+    }
+    &--created_at {
+      text-align: right;
+      border-bottom: 3px solid #CCCCCC;
+    }
+  }
+
+  &__reply-area {
+    text-align: center;
+    padding: 10px 0 10px 0;
+  }
+}

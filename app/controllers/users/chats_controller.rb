@@ -13,6 +13,7 @@ class Users::ChatsController < ApplicationController
         end
       else
         flash[:alert] = "メッセージ送信に失敗しました。"
+        redirect_to room_path
       end
     end
 

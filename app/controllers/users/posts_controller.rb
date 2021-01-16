@@ -6,8 +6,11 @@ class Users::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params.merge({user_id: current_user.id}))
-    @post.save
-    redirect_to post_path(@post.id)
+    if @post.save
+      redirect_to post_path(@post.id)
+    else
+      render :new
+    end
   end
 
   def index
@@ -23,13 +26,16 @@ class Users::PostsController < ApplicationController
     @comments = @post.comments.where(parent_id: nil)
     @comment = @post.comments.new
     @comment_reply = @post.comments.new
+    @post.comments.each do |comment|
+    end
+
   end
-  
+
   def show_like_users
     @post = Post.find(params[:id])
     @likes = Like.where(post_id: @post.id).order(updated_at: :desc).page(params[:page]).per(10)
   end
-  
+
   def edit
     @post = Post.find(params[:id])
     # 他のユーザーがアクセスしようとしたときに遷移させないために条件分岐
@@ -37,15 +43,18 @@ class Users::PostsController < ApplicationController
       if user_signed_in?
         redirect_to user_path(current_user.id)
       else
-        new_user_session_path
+        redirect_to new_user_session_path
       end
     end
   end
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params.merge({user_id: current_user.id}))
-    redirect_to post_path(@post.id)
+    if @post.update(post_params.merge({user_id: current_user.id}))
+      redirect_to post_path(@post.id)
+    else
+      render :edit
+    end
   end
 
   def destroy

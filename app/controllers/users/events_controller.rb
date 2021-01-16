@@ -11,7 +11,7 @@ class Users::EventsController < ApplicationController
     if @event.save
       redirect_to user_events_path(@event.user_id)
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -34,7 +34,7 @@ class Users::EventsController < ApplicationController
       if user_signed_in?
         redirect_to user_path(current_user.id)
       else
-        new_user_session_path
+        redirect_to new_user_session_path
       end
     end
   end
@@ -44,7 +44,7 @@ class Users::EventsController < ApplicationController
     if @event.update(event_params)
       redirect_to user_events_path(user_id: current_user.id)
     else
-      render 'edit'
+      render :edit
     end
   end
 

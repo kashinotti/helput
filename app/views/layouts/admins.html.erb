@@ -18,11 +18,11 @@
             <%= link_to 'helput', admins_homes_path %>
           </h1>
         </div>
-        <% if admins_admin_signed_in? %>
+        <% if admin_signed_in? %>
           <nav>
             <ul class="header-list">
               <li class="header-list__header-item">
-                <%= link_to 'ログアウト', destroy_admins_admin_session_path, method: :delete %>
+                <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
               </li>
               
               <li class="header-list__header-item">
@@ -38,7 +38,7 @@
           <nav>
             <ul class="header-list">
               <li class="header-list__header-item">
-                <%= link_to 'ログイン', new_admins_admin_session_path %>
+                <%= link_to 'ログイン', new_admin_session_path %>
               </li>
             </ul>
           </nav>

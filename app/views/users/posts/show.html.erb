@@ -1,6 +1,5 @@
 <div id="post_<%= @post.id %>">
   <div class="post-show-flash">
-    <%= flash[:notice] %>
   </div>
   <%= render partial: 'users/posts/post', locals: { post: @post, like: @like } %>
 </div>
@@ -27,7 +26,7 @@
             <%= comment.comment %>
           </p>
         </div>
-        
+
         <% if comment.user.id == current_user.id %>
           <div class="comment__comment-area--delete">
             <p>
@@ -35,7 +34,9 @@
             </p>
           </div>
         <% end %>
-        
+        <div class="comment__comment-area--reply">
+          <%= link_to "返信する", post_new_reply_path(post_id: @post.id, id: comment.id) %>
+        </div>
         <div class="comment__comment-area--created_at">
           <%= comment.created_at.strftime("%Y/%m/%d %H:%M") %>
         </div>
@@ -45,9 +46,9 @@
           <% comment.replies.order(:created_at).each do |reply| %>
 
             <div class="comment__reply-area--to">
-              <p>
-                コメントへの返信
-              </p>
+              <h4>
+                Reply
+              </h4>
             </div>
             <div class="comment__reply-area--name">
               <p>
@@ -55,13 +56,12 @@
                 <%= link_to reply.user.name, user_path(reply.user.id) %>
               </p>
             </div>
-
             <div class="comment__reply-area--comment">
               <p>
                 <%= reply.comment %>
               </p>
             </div>
-            
+
             <% if reply.user.id == current_user.id %>
               <div class="comment__reply-area--delete">
                 <p>
@@ -74,19 +74,6 @@
               <%= reply.created_at.strftime("%Y/%m/%d %H:%M") %>
             </div>
           <% end %>
-
-          <div class="comment__reply-area--new-reply">
-            <%= form_with(model:[@post, @comment_reply], url: post_comments_path(@post.id), local: true) do |f| %>
-
-              <%= f.hidden_field :parent_id, value: comment.id %>
-              <%= f.hidden_field :post_id, value: @post.id %>
-              <%= f.text_area :comment, class: "reply-form" %>
-
-              <div class="comment__reply-area-submit">
-                <%= f.submit "返信する", class: "btn btn-primary" %>
-              </div>
-            <% end %>
-          </div>
         </div>
 
     <% end %>
@@ -101,8 +88,8 @@
     </h3>
   </div>
   <div class="new-comment__new-field">
-    <%= form_with(model:[@post, @comment], url: post_comments_path(@post.id), method: :post, local: true) do |f| %>
-
+    <%= form_with(model: @comment, url: post_comments_path(@post.id), method: :post, local: true) do |f| %>
+      <%= render partial: 'layouts/error_messages', locals: { model: f.object } %>
       <%= f.hidden_field :post_id, value: @post.id %>
 
       <%= f.text_area :comment, class: "comment-form" %>

@@ -1,29 +1,29 @@
 <div class="ad-post-index">
-    
+
     <div class="ad-post-index__heading">
       <div class="ad-post-flash">
-        <p><%= flash[:notice] %></p>
-      </div> 
+        <p><%= flash[:destroy] %></p>
+      </div>
       <h1>
         投稿一覧
       </h1>
     </div>
-    
+
     <div>
       <%= search_form_for @q, url: admins_search_post_index_path do |f| %>
         <%= f.label :title_or_content, "投稿を検索", placeholder:"タイトルと本文で検索できます。" %>
         <%= f.search_field :title_or_content_cont, required: true %>
-        
+
         <%= f.button :type => "submit" do %>
           <i class="fas fa-search"></i>
         <% end %>
       <% end %>
     </div>
-    
+
     <div class="ad-post-index__index">
       <div class="ad-post-info">
         <% @posts.each do |post| %>
-        
+
           <div class="ad-post-info__user-name">
             <p>
               <%= attachment_image_tag post.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
@@ -33,7 +33,7 @@
               <%= link_to post.title, admins_post_path(post.id) %>
             </p>
           </div>
-          
+
           <div class="ad-post-info__post-info">
             <i class="fas fa-heart"></i><%= post.likes.count %>
             |
@@ -45,9 +45,8 @@
         <%= paginate @posts %>
       </div>
     </div>
-    
+
   </div>
 
 
- 
-  
+

@@ -1,6 +1,6 @@
 class Admins::UsersController < ApplicationController
   layout 'admins'
-  before_action :authenticate_user!
+  before_action :authenticate_admin!
   def index
     @users = User.all.order(updated_at: :desc).page(params[:page]).per(10)
     @q = @users.ransack(params[:q])

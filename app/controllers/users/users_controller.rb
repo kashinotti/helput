@@ -61,15 +61,18 @@ class Users::UsersController < ApplicationController
       if user_signed_in?
         redirect_to user_path(current_user.id)
       else
-        new_user_session_path
+        redirect_to new_user_session_path
       end
     end
   end
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      redirect_to user_path(@user.id)
+    else
+      render :edit
+    end
   end
   
   def follow_index
