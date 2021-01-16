@@ -11,6 +11,9 @@
       margin: 0 0 50px 30px;
       background-color: white;
       padding: 24px;
+      h4 {
+        text-align: center;
+      }
      .timeline-posts {
         align-items: center;
         padding: 10px 0;
@@ -57,7 +60,7 @@
             }
           }
         }
-        
+
         &__paginate {
           text-align: center;
         }

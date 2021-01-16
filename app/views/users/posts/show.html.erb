@@ -12,7 +12,7 @@
 </div>
 
 <div class="comment">
-
+  <% if @comments.count >= 1 %>
     <% @comments.each do |comment| %>
       <div class="comment__comment-area">
         <div class="comment__comment-area--name">
@@ -77,7 +77,10 @@
         </div>
 
     <% end %>
-  </div>
+  <% else %>
+    <h3>まだコメントはありません。</h3>
+  <% end %>
+</div>
 
 
 <div class="new-comment">

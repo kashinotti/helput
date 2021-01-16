@@ -13,14 +13,19 @@
     
     <div class="user-follower__my-follower--index">
       <div class="follower-user-info">
-        <% @followers.each do |follower| %>
-        
-          <div class="follower-user-info__user-name">
-            <p>
-              <%= attachment_image_tag follower, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
-              <%= link_to follower.name, user_path(follower.id) %>
-            </p>
-          </div>
+        <% if @followers.count >= 1 %>
+          <% @followers.each do |follower| %>
+            <div class="follower-user-info__user-name">
+              <p>
+                <%= attachment_image_tag follower, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+                <%= link_to follower.name, user_path(follower.id) %>
+              </p>
+            </div>
+          <% end %>
+        <% else %>
+          <h4>
+            フォロワーがまだいません。
+          </h4>
         <% end %>
       </div>
     </div>

@@ -23,7 +23,7 @@
         </div>
       <% end %>
 
-
+      <% if @posts.count >= 1 %>
         <div class='user-show__my-post--index'>
           <div class="my-posts">
 
@@ -48,6 +48,8 @@
             </div>
           </div>
         </div>
-
+      <% else %>
+        <h4>まだ投稿がありません</h4>
+      <% end %>
   </div>
 </div>

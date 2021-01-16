@@ -3,15 +3,15 @@ class Users::UsersController < ApplicationController
 
 
   def index
-    @users = User.all.order(updated_at: :desc).page(params[:page]).per(10)
+    @users = User.all.where.not(is_deleted: true).order(updated_at: :desc).page(params[:page]).per(10)
     @q = @users.ransack(params[:q])
-    @search_uesrs = @q.result(distinct: true)
+    @search_uesrs = @q.result(distinct: true).where.not(is_deleted: true)
   end
-  
+
   def search_user_index
     # ransackのユーザーの検索結果を表示するための変数を定義
      @q = User.ransack(params[:q])
-     @users = @q.result(distinct: true).order(created_at: :desc).order(updated_at: :desc).page(params[:page]).per(10)
+     @users = @q.result(distinct: true).where.not(is_deleted: true).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show
@@ -20,13 +20,13 @@ class Users::UsersController < ApplicationController
     @posts = @user.posts.order(updated_at: :desc).page(params[:page]).per(10)
     # 検索フォームの値を格納するために@qを定義
     @q = Post.ransack(params[:q])
-    
+
     # チャット機能に必要な変数を以下に記述
     @currentUserRoom = UserRoom.where(user_id: current_user.id)
     @otherUserRoom = UserRoom.where(user_id: @user.id)
-    
+
     unless @user.id == current_user.id
-      
+
       @currentUserRoom.each do |cu|
         @otherUserRoom.each do |ot|
           if cu.room_id == ot.room_id
@@ -36,18 +36,18 @@ class Users::UsersController < ApplicationController
         end
       end
     end
-    
+
     unless @isRoom
       @room = Room.new
       @userRoom = UserRoom.new
     end
   end
-  
+
   def timeline
     # 新着順で表示できるようにorderメソッドを使用。whereで自分とフォローしているユーザーの投稿を取得
     @timelines = Post.where(user_id: [current_user.id, current_user.followings.ids].flatten).order(created_at: :desc).page(params[:page]).per(10)
   end
-  
+
   def like_post
     @user = User.find(params[:id])
     # 更新順で１０個ごとにページングできるようにorder,perメソッドで設定
@@ -74,22 +74,22 @@ class Users::UsersController < ApplicationController
       render :edit
     end
   end
-  
+
   def follow_index
     @user = User.find(params[:id])
-    @followings = @user.followings.all.order(created_at: :desc).page(params[:page]).per(10)
+    @followings = @user.followings.all.where.not(is_deleted: true).order(created_at: :desc).page(params[:page]).per(10)
   end
-  
-  
+
+
   def follower_index
     @user = User.find(params[:id])
-    @followers = @user.followers.all.order(created_at: :desc).page(params[:page]).per(10)
+    @followers = @user.followers.all.where.not(is_deleted: true).order(created_at: :desc).page(params[:page]).per(10)
   end
-  
+
   def unsubscribe
     @user = User.find_by(id: current_user.id)
   end
-  
+
   def withdraw
     @user = User.find(params[:id])
     # is_deletedカラムをtrueにする
@@ -98,7 +98,7 @@ class Users::UsersController < ApplicationController
     reset_session
     flash[:notice] = 'ご利用いただきありがとうございました。またのご利用をお待ちしております'
     redirect_to root_path
-    
+
   end
 
   private

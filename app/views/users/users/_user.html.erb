@@ -18,7 +18,7 @@
       <td>
         <p>
           <i class="fas fa-users"></i>
-          フォロー：<%= link_to user.followings.count, user_follow_path(user.id) %>
+          フォロー：<%= link_to user.followings.where.not(is_deleted: true).count, user_follow_path(user.id) %>
         </p>
       </td>
     </tr>
@@ -27,7 +27,7 @@
       <td>
        <p>
          <i class="fas fa-users"></i>
-         フォロワー：<%= link_to user.followers.count, user_follower_path(user.id) %>
+         フォロワー：<%= link_to user.followers.where.not(is_deleted: true).count, user_follower_path(user.id) %>
         </p>
       </td>
     </tr>

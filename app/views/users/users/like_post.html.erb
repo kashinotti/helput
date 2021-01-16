@@ -9,30 +9,39 @@
     
     <div class="user-like-posts__index--article">
       <div class="like-posts">
-        <% @likes.each do |like| %>
-          <!--投稿ごとのいいねの数を表示させるためにidにキー(like.post_id)を入れ変数postに代入-->
-          <% post = Post.find_by(id: like.post_id) %>
-          <article>
-            
-            <div class="like-posts__user">
-              <p>
-                <%= link_to post.user.name, user_path(post.user.id) %>
-              </p>
-            </div>
-            
-            <div class="like-posts__title">
-              <p>
-                <%= attachment_image_tag post.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
-                <%= link_to like.post.title, post_path(like.user.id) %>
-              </p>
-            </div>
-            
-            <div class="like-posts__post-info">
-              <i class="fas fa-heart"></i><%= post.likes.count %>
-              |
-              作成日:<%= like.created_at.strftime('%Y/%m/%d') %>
-            </div>
-          </article>
+        <% if @likes.count >= 1 %>
+          <% @likes.each do |like| %>
+              <!--投稿ごとのいいねの数を表示させるためにidにキー(like.post_id)を入れ変数postに代入-->
+              <% post = Post.find_by(id: like.post_id) %>
+              <!--退会済みユーザーの投稿を表示させないために条件分岐-->
+              <% if post.user.is_deleted == false %>
+                <article>
+                  
+                  <div class="like-posts__user">
+                    <p>
+                      <%= link_to post.user.name, user_path(post.user.id) %>
+                    </p>
+                  </div>
+                  
+                  <div class="like-posts__title">
+                    <p>
+                      <%= attachment_image_tag post.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+                      <%= link_to like.post.title, post_path(like.user.id) %>
+                    </p>
+                  </div>
+                  
+                  <div class="like-posts__post-info">
+                    <i class="fas fa-heart"></i><%= post.likes.count %>
+                    |
+                    作成日:<%= like.created_at.strftime('%Y/%m/%d') %>
+                  </div>
+                </article>
+              <% end %>
+          <% end %>
+        <% else %>
+          <h4>
+            いいねした投稿がありません。
+          </h4>
         <% end %>
         
         <div class="like-posts__paginate">
