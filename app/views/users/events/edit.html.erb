@@ -39,6 +39,8 @@
 
     <div class="event-edit__event-edit-form--submit">
       <%= f.submit '変更を保存', class: "btn btn-primary btn-lg" %>
+      |
+      <%= link_to "予定表に戻る", user_events_path(user_id: current_user.id), class: "btn btn-warning btn-lg" %>
     </div>
     <% end %>
   </div>
