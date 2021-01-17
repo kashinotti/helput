@@ -37,7 +37,7 @@
 @import 'third_party/spell_checker.min.css';
 
 .wrapper {
-  min-height: 100vh; 
+  min-height: 100vh;
   position: relative;
 }
 
@@ -54,6 +54,7 @@ header {
   .header-title {
     display: flex;
     justify-content: flex-start;
+    margin-left: 15px;
     h1 {
       font-size: 60px;
       color: white;

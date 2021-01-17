@@ -16,11 +16,11 @@
         <div class="header-title">
           <% if user_signed_in? %>
           <h1>
-            <%= link_to 'helput', user_path(current_user.id) %>
+            <%= link_to 'helput', user_path(current_user.id), class: "header-title__logo" %>
           </h1>
           <% else %>
           <h1>
-            <%= link_to 'helput', root_path %>
+            <%= link_to 'helput', root_path, class: "header-title__logo" %>
           </h1>
           <% end %>
         </div>
