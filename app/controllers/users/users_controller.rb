@@ -87,12 +87,12 @@ class Users::UsersController < ApplicationController
   def withdraw
     # is_deletedカラムをtrueにする
     @user.update(is_deleted: true)
+    # 退会フラグ変更後にユーザーの投稿、いいね、コメントを全て削除し、他のユーザーに表示されないようにする
     @user.posts.destroy_all
     @user.likes.destroy_all
     @user.comments.destroy_all
     # ログアウトさせる
     reset_session
-    flash[:notice] = 'ご利用いただきありがとうございました。またのご利用をお待ちしております'
     redirect_to root_path
 
   end

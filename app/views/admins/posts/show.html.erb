@@ -1,52 +1,48 @@
 <div class="ad-post-show">
-     <div class="ad-post-show-flash">
-        <%= flash[:notice] %>
-     </div>
-    <div class="ad-post-detail">
-      <div class="ad-post-detail__user-name">
-        <%= attachment_image_tag @post.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
-        <%= link_to @post.user.name, admins_user_path(@post.user.id) %>
-      </div>
+  <div class="ad-post-detail">
+    <div class="ad-post-detail__user-name">
+      <%= attachment_image_tag @post.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+      <%= link_to @post.user.name, admins_user_path(@post.user.id) %>
+    </div>
 
-      <div class="ad-post-detail__created_at">
-        <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %>
-      </div>
+    <div class="ad-post-detail__created_at">
+      <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %>
+    </div>
 
-      <div class="ad-post-detail__post-title">
+    <div class="ad-post-detail__post-title">
+      <p>
+        <%= @post.title %>
+      </p>
+    </div>
+
+
+
+    <div class="ad-post-detail__post-content">
+      <div class="ad-post-detail__post-content--main">
         <p>
-          <%= @post.title %>
+          <%== @post.content %>
         </p>
       </div>
 
-
-
-      <div class="ad-post-detail__post-content">
-
-        <div class="ad-post-detail__post-content--main">
+      <div class="ad-post-detail__post-content--option">
+        <div class="ad-post-like">
           <p>
-            <%== @post.content %>
+            <i class="fas fa-heart fa-2x"></i>
+              <%= @post.likes.count %>
+              <%= link_to "いいねしたユーザーを見る", admins_show_like_users_path(@post.id) %>
           </p>
         </div>
 
-        <div class="ad-post-detail__post-content--option">
-          <div class="ad-post-like">
-              <p>
-                  <i class="fas fa-heart fa-2x"></i>
-                <%= @post.likes.count %>
-                <%= link_to "いいねしたユーザーを見る", admins_show_like_users_path(@post.id) %>
-              </p>
-          </div>
-
-          <div class="ad-post-edit-link">
-              <%= link_to "削除する", admins_post_path(@post.id), method: :delete, class: "btn btn-", "data-confirm" => "この投稿を削除します。よろしいですか？" %>
-          </div>
+        <div class="ad-post-edit-link">
+          <%= link_to "削除する", admins_post_path(@post.id), method: :delete, class: "btn btn-", "data-confirm" => "この投稿を削除します。よろしいですか？" %>
         </div>
       </div>
     </div>
   </div>
+</div>
   
   
-  <div class="ad-comment-heading">
+<div class="ad-comment-heading">
   <h1>
     <i class="far fa-comment"></i>
     コメント
@@ -54,68 +50,66 @@
 </div>
 
 <div class="ad-comment">
+  <% @comments.each do |comment| %>
+    <div class="ad-comment__comment-area">
+      <div class="ad-comment__comment-area--name">
+        <p>
+          <%= attachment_image_tag comment.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+          <%= link_to comment.user.name, admins_user_path(comment.user.id) %>
+        </p>
+      </div>
+      <div class="ad-comment__comment-area--comment">
+        <p>
+          <%= comment.comment %>
+        </p>
+      </div>
+        
+      <% if comment.user.id == current_user.id %>
+        <div class="ad-comment__comment-area--delete">
+          <p>
+            <%= link_to "削除", admins_post_comment_path(id: comment.id, post_id: @post.id), method: :delete, "data-confirm" => "コメントを削除しますか？" %>
+          </p>
+        </div>
+      <% end %>
+        
+      <div class="ad-comment__comment-area--created_at">
+        <%= comment.created_at.strftime("%Y/%m/%d %H:%M") %>
+      </div>
+    </div>
 
-    <% @comments.each do |comment| %>
-      <div class="ad-comment__comment-area">
-        <div class="ad-comment__comment-area--name">
-          <p>
-            <%= attachment_image_tag comment.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
-            <%= link_to comment.user.name, admins_user_path(comment.user.id) %>
-          </p>
-        </div>
-        <div class="ad-comment__comment-area--comment">
-          <p>
-            <%= comment.comment %>
-          </p>
-        </div>
-        
-        <% if comment.user.id == current_user.id %>
-          <div class="ad-comment__comment-area--delete">
-            <p>
-              <%= link_to "削除", admins_post_comment_path(id: comment.id, post_id: @post.id), method: :delete, "data-confirm" => "コメントを削除しますか？" %>
-            </p>
-          </div>
-        <% end %>
-        
-        <div class="ad-comment__comment-area--created_at">
-          <%= comment.created_at.strftime("%Y/%m/%d %H:%M") %>
-        </div>
+  <div class="ad-comment__reply_area">
+    <% comment.replies.order(:created_at).each do |reply| %>
+      <div class="ad-comment__reply-area--to">
+        <p>
+          コメントへの返信
+        </p>
+      </div>
+      <div class="ad-comment__reply-area--name">
+        <p>
+          <%= attachment_image_tag reply.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+          <%= link_to reply.user.name, admins_user_path(reply.user.id) %>
+        </p>
       </div>
 
-        <div class="ad-comment__reply_area">
-          <% comment.replies.order(:created_at).each do |reply| %>
-
-            <div class="ad-comment__reply-area--to">
-              <p>
-                コメントへの返信
-              </p>
-            </div>
-            <div class="ad-comment__reply-area--name">
-              <p>
-                <%= attachment_image_tag reply.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
-                <%= link_to reply.user.name, admins_user_path(reply.user.id) %>
-              </p>
-            </div>
-
-            <div class="ad-comment__reply-area--comment">
-              <p>
-                <%= reply.comment %>
-              </p>
-            </div>
+      <div class="ad-comment__reply-area--comment">
+        <p>
+          <%= reply.comment %>
+        </p>
+      </div>
             
       
-            <div class="ad-comment__reply-area--delete">
-              <p>
-                <%= link_to "削除", admins_post_comment_path(id: reply.id, post_id: @post.id), method: :delete, "data-confirm" => "返信を削除しますか？" %>
-              </p>
-            </div>
+      <div class="ad-comment__reply-area--delete">
+        <p>
+          <%= link_to "削除", admins_post_comment_path(id: reply.id, post_id: @post.id), method: :delete, "data-confirm" => "返信を削除しますか？" %>
+        </p>
+      </div>
 
-            <div class="ad-comment__reply-area--created_at">
-              <%= reply.created_at.strftime("%Y/%m/%d %H:%M") %>
-            </div>
-          <% end %>
-        </div>
+      <div class="ad-comment__reply-area--created_at">
+        <%= reply.created_at.strftime("%Y/%m/%d %H:%M") %>
+      </div>
     <% end %>
+  </div>
+  <% end %>
   </div>
 
 
