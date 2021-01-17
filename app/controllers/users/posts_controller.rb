@@ -1,5 +1,8 @@
 class Users::PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_post, only: [:show, :show_like_users, :edit, :update, :destroy]
+  
+  
   def new
     @post = Post.new
   end
@@ -21,7 +24,7 @@ class Users::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
     @like = @post.likes.find_by(user_id: current_user.id)
     @comments = @post.comments.where(parent_id: nil)
     @comment = @post.comments.new
@@ -32,12 +35,12 @@ class Users::PostsController < ApplicationController
   end
 
   def show_like_users
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
     @likes = Like.where(post_id: @post.id).order(updated_at: :desc).page(params[:page]).per(10)
   end
 
   def edit
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
     # 他のユーザーがアクセスしようとしたときに遷移させないために条件分岐
     if @post.user_id != current_user.id
       if user_signed_in?
@@ -49,7 +52,7 @@ class Users::PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
     if @post.update(post_params.merge({user_id: current_user.id}))
       redirect_to post_path(@post.id)
     else
@@ -58,12 +61,16 @@ class Users::PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
     @post.destroy
     redirect_to user_path(current_user.id)
   end
 
   private
+  
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:title, :content)
