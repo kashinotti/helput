@@ -19,6 +19,9 @@
             <p>
               <%= attachment_image_tag following, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
               <%= link_to following.name, admins_user_path(following.id) %>
+              <% if following.is_deleted == true %>
+                (退会済みユーザー)
+              <% end %>
             </p>
           </div>
         <% end %>
