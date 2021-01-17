@@ -1,6 +1,7 @@
 class Admins::PostsController < ApplicationController
   layout 'admins'
   before_action :authenticate_admin!
+  before_action :set_post, only: [:show, :show_like_users, :destroy]
   def index
     @posts = Post.all.order(created_at: :desc).order(updated_at: :desc).page(params[:page]).per(10)
      # ransackの投稿内容の検索結果を表示するための変数を定義
@@ -15,25 +16,32 @@ class Admins::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
     @comments = @post.comments.where(parent_id: nil)
     @comment = @post.comments.new
     @comment_reply = @post.comments.new
   end
 
   def show_like_users
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
     @likes = Like.where(post_id: @post.id).order(updated_at: :desc).page(params[:page]).per(10)
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
     if @post.destroy
       redirect_to admins_posts_path
       flash[:destroy] = "投稿を削除しました。"
     else
       render :show
     end
+  end
+  
+  
+  private
+  
+  def set_post
+    @post = Post.find(params[:id])
   end
 
 end

@@ -26,23 +26,23 @@
         <% if @posts.count >= 1 %>
           <div class='post-search__result--index'>
             <div class="search-result">
-  
+
               <% @posts.each do |post| %>
                 <article>
-  
+
                   <div class="search-result__post-title">
                     <p><%= link_to post.title, post_path(post.id) %></p>
                   </div>
-  
+
                   <div class="search-result__post-info">
-                    <i class="fas fa-heart"></i><%= post.likes.count %>
+                    <i class="fas fa-heart"></i>&nbsp;<%= post.likes.count %>
                     |
                     作成日:<%= post.created_at.strftime('%Y/%m/%d') %>
                   </div>
-  
+
                 </article>
               <% end %>
-  
+
               <div class="search-result__paginate">
                 <%= paginate @posts %>
               </div>
