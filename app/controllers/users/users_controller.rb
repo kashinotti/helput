@@ -89,6 +89,7 @@ class Users::UsersController < ApplicationController
     @user.update(is_deleted: true)
     @user.posts.destroy_all
     @user.likes.destroy_all
+    @user.comments.destroy_all
     # ログアウトさせる
     reset_session
     flash[:notice] = 'ご利用いただきありがとうございました。またのご利用をお待ちしております'
@@ -97,7 +98,7 @@ class Users::UsersController < ApplicationController
   end
 
   private
-  
+
   def set_user
     @user = User.find(params[:id])
   end

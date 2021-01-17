@@ -1,7 +1,7 @@
 class Users::CommentsController < ApplicationController
-
+  before_action :set_post, only: [:create, :new_reply, :reply_create]
+  
   def create
-    @post = Post.find(params[:post_id])
     @comment = current_user.comments.new(comment_params)
     @comment.post_id = @post.id
     if @comment.save
@@ -18,13 +18,11 @@ class Users::CommentsController < ApplicationController
   end
 
   def new_reply
-    @post = Post.find(params[:post_id])
     @comment = Comment.find_by(post_id: @post.id, id: params[:id])
     @comment_reply = @post.comments.new
   end
 
   def reply_create
-    @post = Post.find(params[:post_id])
     @comment_reply = current_user.comments.new(comment_params)
     @comment_reply.post_id = @post.id
     if @comment_reply.save
@@ -46,6 +44,10 @@ class Users::CommentsController < ApplicationController
   end
 
   private
+  
+  def set_post
+    @post = Post.find(params[:post_id])
+  end
 
   def comment_params
     params.require(:comment).permit(:comment, :parent_id)
