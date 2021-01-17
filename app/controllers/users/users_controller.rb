@@ -1,6 +1,6 @@
 class Users::UsersController < ApplicationController
   before_action :authenticate_user!
-
+  before_action :set_user, only: [:show, :like_post, :edit, :update, :follow_index, :follower_index, :withdraw]
 
   def index
     @users = User.all.where.not(is_deleted: true).order(updated_at: :desc).page(params[:page]).per(10)
@@ -15,7 +15,7 @@ class Users::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     # 更新順で１０個ごとにページングできるようにorder,perメソッドで設定
     @posts = @user.posts.order(updated_at: :desc).page(params[:page]).per(10)
     # 検索フォームの値を格納するために@qを定義
@@ -49,13 +49,13 @@ class Users::UsersController < ApplicationController
   end
 
   def like_post
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     # 更新順で１０個ごとにページングできるようにorder,perメソッドで設定
     @likes = Like.where(user_id: @user.id).order(updated_at: :desc).page(params[:page]).per(10)
   end
 
   def edit
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     # 他のユーザーがアクセスしようとしたときに遷移させないために条件分岐
     if @user.id != current_user.id
       if user_signed_in?
@@ -67,7 +67,7 @@ class Users::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user.id)
     else
@@ -76,13 +76,13 @@ class Users::UsersController < ApplicationController
   end
 
   def follow_index
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     @followings = @user.followings.all.where.not(is_deleted: true).order(created_at: :desc).page(params[:page]).per(10)
   end
 
 
   def follower_index
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     @followers = @user.followers.all.where.not(is_deleted: true).order(created_at: :desc).page(params[:page]).per(10)
   end
 
@@ -91,7 +91,7 @@ class Users::UsersController < ApplicationController
   end
 
   def withdraw
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     # is_deletedカラムをtrueにする
     @user.update(is_deleted: true)
     @user.posts.destroy_all
@@ -104,6 +104,10 @@ class Users::UsersController < ApplicationController
   end
 
   private
+  
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:name, :introduce, :profile_image)

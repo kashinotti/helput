@@ -1,6 +1,6 @@
 class Users::EventsController < ApplicationController
   before_action :authenticate_user!
-
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
   def new
     @event = Event.new
   end
@@ -24,11 +24,9 @@ class Users::EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
   end
 
   def edit
-    @event = Event.find(params[:id])
     # 他のユーザーがアクセスしようとしたときに遷移させないために条件分岐
     if @event.user_id != current_user.id
       if user_signed_in?
@@ -40,7 +38,6 @@ class Users::EventsController < ApplicationController
   end
 
   def update
-    @event = Event.find(params[:id])
     if @event.update(event_params)
       redirect_to user_events_path(user_id: current_user.id)
     else
@@ -49,12 +46,15 @@ class Users::EventsController < ApplicationController
   end
 
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
     redirect_to user_events_path(user_id: current_user.id)
   end
 
   private
+  
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
   def event_params
     params.require(:event).permit(:user_id, :title, :content, :start_date, :end_date)
