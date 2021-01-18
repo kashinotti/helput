@@ -1,15 +1,20 @@
 
 <div class="contact-complete">
-  
+
     <h1>お問い合わせが完了しました。</h1>
     <p>
       お問い合わせいただきありがとうございます。
       <br>
       回答はメールアドレスにお送りさせていただきますのでご確認いただきますようお願いいたします。
     </p>
-    
-    <div class="contact-complete__my-page-link">
-      <%= link_to "マイページへ戻る", user_path(current_user.id), class: "contact-complete__my-page-link--btn" %>
-    </div>
-  
+    <% if user_signed_in? %>
+      <div class="contact-complete__my-page-link">
+        <%= link_to "マイページへ戻る", user_path(current_user.id), class: "contact-complete__my-page-link--btn" %>
+      </div>
+    <% else %>
+      <div class="contact-complete__top-page-link">
+        <%= link_to "トップページへ戻る", root_path, class: "contact-complete__top-page-link--btn" %>
+      </div>
+    <% end %>
+
 </div>

@@ -6,7 +6,7 @@
   
   <div class="profile-edit__edit-form">
     <%= form_with model: @user, url: user_path(@user.id), method: :patch, local: true do |f| %>
-    
+    <%= render partial: 'layouts/error_messages', locals: { model: f.object } %>
       <div class="edit-field">
         <div class="edit-field__label">
           <%= f.label :name, "ユーザー名" %>

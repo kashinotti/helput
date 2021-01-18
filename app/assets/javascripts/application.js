@@ -41,9 +41,7 @@
 //= require plugins/quick_insert.min
 //= require plugins/quote.min
 //= require plugins/save.min
-//= require plugins/table.min
 //= require plugins/url.min
-//= require plugins/video.min
 //= require languages/ja
 
 //= require third_party/embedly.min.js

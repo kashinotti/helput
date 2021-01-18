@@ -1,39 +1,58 @@
-<div>
-  <div>
-    <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "50x50" %>
+<div class="ad-profile">
+  <div class="ad-profile__image">
+    <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "100x100" %>
   </div>
-  <div>
-    <%= user.name %>
+  <div class="ad-profile__user-name">
+    <p>
+      <%= user.name %>
+    </p>
   </div>
-  <div>
-    <%= user.introduce %>
+  <div class="ad-profile__introduce">
+    <p>
+      <%= user.introduce %>
+    </p>
   </div>
 
-  <table>
+  <table class="ad-user-status">
     <tr>
-      <p>フォロー：</p>
+      <td>
+        <p>
+          <i class="fas fa-users"></i>
+          フォロー：<%= link_to user.followings.count, admins_user_follow_path(user.id) %>
+        </p>
+      </td>
     </tr>
 
     <tr>
-       <p>フォロワー：</p>
+      <td>
+       <p>
+         <i class="fas fa-users"></i>
+         フォロワー：<%= link_to user.followers.count, admins_user_follower_path(user.id) %>
+        </p>
+      </td>
     </tr>
 
     <tr>
-       <p>投稿数：<%= user.posts.count %></p>
+      <td>
+       <p>
+         <i class="fas fa-pencil-alt"></i>
+         投稿数：<%= link_to user.posts.count, admins_user_path(user.id) %>
+       </p>
+      </td>
     </tr>
-   
+
+    <tr>
+      <td>
+        <%= form_with model: user, url: admins_user_path(user.id), method: :patch, local: true do |f| %>
+
+          <%= f.radio_button :is_deleted, FALSE %> 有効
+          <%= f.radio_button :is_deleted, TRUE %> 無効
+
+          <div>
+            <%= f.submit '退会フラグを変更する', class: "btn btn-default", class: "ad-user-status__flag-btn" %>
+          </div>
+        <% end %>
+      </td>
+    </tr>
   </table>
-  
-  <div>
-    <%= form_with model: user, url: admins_user_path(user.id), method: :patch, local: true do |f| %>
-      
-      <%= f.radio_button :is_deleted, FALSE %> 有効
-      <%= f.radio_button :is_deleted, TRUE %> 無効
-    
-      <div>
-        <%= f.submit '退会フラグを変更する' %>
-      </div>
-    <% end %>
-  </div>
-  
 </div>

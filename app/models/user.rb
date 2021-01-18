@@ -15,10 +15,14 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverse_of_relationships, source: :user
   
-  # チャット機能関連のアソシエーション
+  
   has_many :user_rooms, dependent: :destroy
   has_many :chats, dependent: :destroy
   
+  
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :introduce, length: { maximum: 500 }
   
   
   def follow(other_user)

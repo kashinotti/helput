@@ -1,23 +1,28 @@
-function buildHTML(chat){
-    var html = `<div class="upper-message__user-name">
-                  ${chat.user_name}
-                </div>
-                <div class="upper-message__content">
-                  <p>${chat.message}</p>
-                </div>
-                <div class="lower-message__created">
-                  ${chat.created_at}
+
+
+function buildHTML(data){
+
+    var html = `<div class="message">
+                  <div class="upper-message">
+                    <div class="upper-message__user-name">
+                      ${data.user_name}
+                    </div>
+                    <div class="upper-message__content">
+                      <p>${data.message}</p>
+                    </div>
+                    <div class="lower-message__created">
+                      ${data.created_at}
+                    </div>
+                  </div>
                 </div>`;
     return html;
   }
 
 function scroll() {
 
-    $('.messages').animate({scrollTop: $('.message')[0].scrollHeight});
+    $('.message').animate({scrollTop: $('.message')[0].scrollHeight});
 
 }
-
-
 
 
 $(document).on('turbolinks:load', function(){
@@ -29,11 +34,14 @@ $(document).on('turbolinks:load', function(){
     $.ajax({
       url: url,
       type: 'POST',
+      // リクエスト。フォームに入力された値
       data: message,
       datatype: "json",
       processData: false,
       contentType: false
     }).done(function(data){
+      // フォームで入力された値がjbuilderで返されたものがdataに入っている
+      console.log(data);
       var html = buildHTML(data);
       $('.messages').append(html);
       $('.form_message').val("");

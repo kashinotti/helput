@@ -9,28 +9,38 @@
     </h1>
     <div class="timeline__index--article">
       <div class="timeline-posts">
-        <% @timelines.each do |timeline| %>
-          <article>
-            
-            <div class="timeline-posts__user">
-              <p>
-                <%= link_to timeline.user.name, user_path(timeline.user.id) %>
-              </p>
-            </div>
-            
-            <div class="timeline-posts__post-title">
-              <p>
-                <%= attachment_image_tag timeline.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
-                <%= link_to timeline.title, post_path(timeline.id) %>
-              </p>
-            </div>
-
-            <div class="timeline-posts__post-info">
-              <i class="fas fa-heart"></i><%= timeline.likes.count %>
-              |
-              作成日:<%= timeline.created_at.strftime('%Y/%m/%d') %>
-            </div>
-          </article>
+        <% if @timelines.count >= 1 %>
+          <% @timelines.each do |timeline| %>
+            <!--退会済みユーザーの投稿を表示-->
+            <% if timeline.user.is_deleted == false %>
+              <article>
+  
+                <div class="timeline-posts__user">
+                  <p>
+                    <%= attachment_image_tag timeline.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+                    <%= link_to timeline.user.name, user_path(timeline.user.id) %>
+                  </p>
+                </div>
+  
+                <div class="timeline-posts__post-title">
+                  <p>
+                    <%= link_to timeline.title, post_path(timeline.id) %>
+                  </p>
+                </div>
+  
+                <div class="timeline-posts__post-info">
+                  <i class="fas fa-heart"></i>&nbsp;<%= timeline.likes.count %>
+                  |
+                  作成日:<%= timeline.created_at.strftime('%Y/%m/%d') %>
+                </div>
+              </article>
+            <% end %>
+          <% end %>
+        <% else %>
+          <h4>
+            投稿がありません。<br>
+            ユーザーをフォローしていろんな投稿を見ましょう！
+          </h4>
         <% end %>
 
         <div class="timeline-posts__paginate">

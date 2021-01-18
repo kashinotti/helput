@@ -40,6 +40,7 @@
   &__post-content {
     display: flex;
     width: 100%;
+    text-align: left;
     &--left-content {
       font-size: 20px;
       width: 45%;
@@ -86,7 +87,8 @@
     &--right-content {
       font-size: 20px;
       width: 50%;
-      text-align: right;
+      text-align: left;
+      margin-left: 70px;
     }
   }
 }
@@ -122,6 +124,7 @@
     &--left-content {
       font-size: 20px;
       width: 45%;
+      text-align: left;
     }
     &--right-content {
       padding-left: 60px;

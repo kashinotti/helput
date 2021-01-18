@@ -37,7 +37,7 @@
 @import 'third_party/spell_checker.min.css';
 
 .wrapper {
-  min-height: 100vh; 
+  min-height: 100vh;
   position: relative;
 }
 
@@ -47,13 +47,19 @@ header {
   height: 100px;
   display: flex;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
   .header-title {
     display: flex;
     justify-content: flex-start;
+    margin-left: 15px;
     h1 {
       font-size: 60px;
       color: white;
       text-decoration: none;
+      padding-bottom: 20px;
     }
     :hover {
       text-decoration: none;
@@ -203,6 +209,7 @@ header {
 
 body {
   background-color: #F5F5F5;
+  padding-top: 100px;
 }
 
 footer {

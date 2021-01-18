@@ -1,32 +1,58 @@
- <div>
-  <p>
-    <%= post.title %>
-  </p>
+ <div class="post-show">
 
-  <p>
-    <%== post.content %>
-  </p>
+    <div class="post-detail">
+      <div class="post-detail__user-name">
+        <%= attachment_image_tag @post.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+        <%= link_to @post.user.name, user_path(@post.user.id) %>
+      </div>
 
+      <div class="post-detail__created_at">
+        <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %>
+      </div>
 
-  <% if current_user.liked_by?(post) %>
-    <p>
-      <%= link_to post_like_path(post.id, like.id), method: :delete, remote: true do %>
-        <i class="fas fa-heart"></i>
-      <% end %>
-      <%= post.likes.count %>
-    </p>
-  <% else %>
-    <p>
-      <%= link_to post_likes_path(post.id), method: :post, remote: true do %>
-        <i class="far fa-heart"></i>
-      <% end %>
-      <%= post.likes.count %>
-    </p>
-  <% end %>
+      <div class="post-detail__post-title">
+        <p>
+          <%= post.title %>
+        </p>
+      </div>
 
 
-  <% if post.user_id == current_user.id %>
-    <%= link_to "編集する", edit_post_path(post.id) %>
-  <% end %>
 
+      <div class="post-detail__post-content">
+
+        <div class="post-detail__post-content--main">
+          <p>
+            <%== post.content %>
+          </p>
+        </div>
+
+        <div class="post-detail__post-content--option">
+          <div class="post-like">
+            <% if current_user.liked_by?(post) %>
+              <p>
+                <%= link_to post_like_path(post.id, like.id), method: :delete, remote: true do %>
+                  <i class="fas fa-heart fa-2x"></i>
+                <% end %>
+                <%= post.likes.count %>
+                <%= link_to "いいねしたユーザーを見る", show_like_users_path(post.id) %>
+              </p>
+            <% else %>
+              <p>
+                <%= link_to post_likes_path(post.id), method: :post, remote: true do %>
+                  <i class="far fa-heart fa-2x"></i>
+                <% end %>
+                <%= post.likes.count %>
+                <%= link_to "いいねしたユーザーを見る", show_like_users_path(post.id) %>
+              </p>
+            <% end %>
+          </div>
+
+          <div class="post-edit-link">
+            <% if post.user_id == current_user.id %>
+              <%= link_to "編集する", edit_post_path(post.id), class: "btn btn-info" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>

@@ -1,57 +1,104 @@
-<div>
-  <h1>投稿詳細画面</h1>
-    <div id="post_<%= @post.id %>">
-      <%= render partial: 'users/posts/post', locals: { post: @post, like: @like } %>
-    </div>
+<div id="post_<%= @post.id %>">
+  <div class="post-show-flash">
+  </div>
+  <%= render partial: 'users/posts/post', locals: { post: @post, like: @like } %>
 </div>
 
-<div>
-  <h1>コメント</h1>
+<div class="comment-heading">
+  <h1>
+    <i class="far fa-comment"></i>
+    コメント
+  </h1>
+</div>
 
-  <div>
+<div class="comment">
+  <% if @comments.count >= 1 %>
     <% @comments.each do |comment| %>
-      <p>
-        <%= comment.user.name %>
-      </p>
-      <p>
-        <%= comment.comment %>
-      </p>
-
-      <div class="reply_area">
-        <% comment.replies.order(:created_at).each do |reply| %>
+      <div class="comment__comment-area">
+        <div class="comment__comment-area--name">
           <p>
-            <%= reply.user.name %>
+            <%= attachment_image_tag comment.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+            <%= link_to comment.user.name, user_path(comment.user.id) %>
           </p>
+        </div>
+        <div class="comment__comment-area--comment">
           <p>
-            <%= reply.comment %>
+            <%= comment.comment %>
           </p>
+        </div>
+
+        <% if comment.user.id == current_user.id %>
+          <div class="comment__comment-area--delete">
+            <p>
+              <%= link_to "削除", post_comment_path(id: comment.id, post_id: @post.id), method: :delete, "data-confirm" => "コメントを削除しますか？" %>
+            </p>
+          </div>
         <% end %>
-      </div>
-      <div>
-        <%= form_with(model:[@post, @comment_reply], url: post_comments_path(@post.id), local: true) do |f| %>
-
-          <%= f.hidden_field :parent_id, value: comment.id %>
-          <%= f.hidden_field :post_id, value: @post.id %>
-          <%= f.text_area :comment %>
-
-          <%= f.submit "返信する" %>
-        <% end %>
+        <div class="comment__comment-area--reply">
+          <%= link_to "返信する", post_new_reply_path(post_id: @post.id, id: comment.id) %>
+        </div>
+        <div class="comment__comment-area--created_at">
+          <%= comment.created_at.strftime("%Y/%m/%d %H:%M") %>
+        </div>
       </div>
 
+        <div class="comment__reply_area">
+          <% comment.replies.order(:created_at).each do |reply| %>
+
+            <div class="comment__reply-area--to">
+              <h4>
+                Reply
+              </h4>
+            </div>
+            <div class="comment__reply-area--name">
+              <p>
+                <%= attachment_image_tag reply.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+                <%= link_to reply.user.name, user_path(reply.user.id) %>
+              </p>
+            </div>
+            <div class="comment__reply-area--comment">
+              <p>
+                <%= reply.comment %>
+              </p>
+            </div>
+
+            <% if reply.user.id == current_user.id %>
+              <div class="comment__reply-area--delete">
+                <p>
+                  <%= link_to "削除", post_comment_path(id: reply.id, post_id: @post.id), method: :delete, "data-confirm" => "返信を削除しますか？" %>
+                </p>
+              </div>
+            <% end %>
+
+            <div class="comment__reply-area--created_at">
+              <%= reply.created_at.strftime("%Y/%m/%d %H:%M") %>
+            </div>
+          <% end %>
+        </div>
 
     <% end %>
-  </div>
+  <% else %>
+    <h3>まだコメントはありません。</h3>
+  <% end %>
 </div>
 
 
-<div>
-  <%= form_with(model:[@post, @comment], url: post_comments_path(@post.id), method: :post, local: true) do |f| %>
+<div class="new-comment">
+  <div>
+    <h3>
+      <i class="far fa-comment"></i>
+      コメントを投稿する
+    </h3>
+  </div>
+  <div class="new-comment__new-field">
+    <%= form_with(model: @comment, url: post_comments_path(@post.id), method: :post, local: true) do |f| %>
+      <%= render partial: 'layouts/error_messages', locals: { model: f.object } %>
+      <%= f.hidden_field :post_id, value: @post.id %>
 
-    <%= f.hidden_field :post_id, value: @post.id %>
-
-    <%= f.text_area :comment %>
-
-    <%= f.submit "投稿する" %>
-
-  <% end %>
+      <%= f.text_area :comment, class: "comment-form" %>
+    <div class="new-comment__new-field--submit">
+      <%= f.submit "投稿する", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+  </div>
 </div>

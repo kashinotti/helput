@@ -1,0 +1,28 @@
+.ad-session {
+  width: 50%;
+  background-color: white;
+  margin: 100px auto 50px auto;
+  &__form {
+    text-align: center;
+     h1 {
+      padding-top: 50px;
+    }
+  }
+  &__field {
+    padding-top: 40px;
+    input[type="email"] {
+      width: 450px;
+      height: 30px;
+    }
+    input[type="password"] {
+      width: 450px;
+      height: 30px;
+    }
+    &--label {
+      font-size: 24px;
+    }
+    &--actions {
+      padding: 40px 0 40px 0;
+    }
+  }
+}

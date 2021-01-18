@@ -1,0 +1,32 @@
+<div class="wrapper-comment">
+  <div class="wrapper-comment__comment-area">
+    <div class="wrapper-comment__comment-area--name">
+      <p>
+        <%= attachment_image_tag @comment.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+        <%= link_to @comment.user.name, user_path(@comment.user.id) %>
+      </p>
+    </div>
+    <div class="wrapper-comment__comment-area--comment">
+      <p>
+        <%= @comment.comment %>
+      </p>
+    </div>
+
+    <div class="wrapper-comment__comment-area--created_at">
+      <%= @comment.created_at.strftime("%Y/%m/%d %H:%M") %>
+    </div>
+  </div>
+
+  <div class="wrapper-comment__reply-area">
+    <%= form_with(model: @comment_reply, url: post_reply_create_path(@post.id), method: :post, local: true) do |f| %>
+      <%= render partial: 'layouts/error_messages', locals: { model: f.object } %>
+      <%= f.hidden_field :parent_id, value: @comment.id %>
+      <%= f.hidden_field :post_id, value: @post.id %>
+      <%= f.text_area :comment, class: "reply-form" %>
+
+      <div class="comment__reply-area-submit">
+        <%= f.submit "返信する", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

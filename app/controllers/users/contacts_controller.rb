@@ -11,7 +11,7 @@ class Users::ContactsController < ApplicationController
       ContactMailer.contact_mail(@contact).deliver
       redirect_to contact_complete_path
     else
-      render 'new'
+      render :new
     end
   end
   

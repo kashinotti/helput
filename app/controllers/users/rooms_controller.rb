@@ -6,7 +6,7 @@ class Users::RoomsController < ApplicationController
     @userRoom2 = UserRoom.create(params.require(:user_room).permit(:user_id, :room_id).merge(room_id: @room.id))
     redirect_to room_path(@room.id)
   end
-  
+
   def show
     @room = Room.find(params[:id])
     # @userRoom = UserRoom.find(params[:id])
@@ -21,5 +21,5 @@ class Users::RoomsController < ApplicationController
       redirect_to user_path(current_user.id)
     end
   end
-  
+
 end

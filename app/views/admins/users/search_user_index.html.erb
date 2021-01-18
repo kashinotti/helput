@@ -1,0 +1,42 @@
+<div class="ad-user-index">
+    
+    <div class="ad-user-index__heading">
+      <h1>
+        <%= @users.count %>件の検索結果
+      </h1>
+    </div>
+    
+    <div>
+      <%= search_form_for @q, url: admins_search_user_index_path do |f| %>
+        <%= f.label :name_cont, "ユーザーを検索", placeholder:"ユーザー名で検索できます。" %>
+        <%= f.search_field :name_cont, required: true %>
+        
+        <%= f.button :type => "submit" do %>
+          <i class="fas fa-search"></i>
+        <% end %>
+      <% end %>
+    </div>
+    
+    <% if @users.count >= 1 %>
+    <div class="ad-user-index__index">
+      <div class="ad-user-info">
+        <% @users.each do |user| %>
+        
+          <div class="ad-user-info__user-name">
+            <p>
+              <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+              <%= link_to user.name, admins_user_path(user.id) %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+      <div class="ad-user-info__paginate">
+        <%= paginate @users %>
+      </div>
+    </div>
+     <% else %>
+      <div class="no-result">
+        <h3>キーワードに一致する記事は見つかりませんでした。</h3>
+      </div>
+    <% end %>
+  </div>

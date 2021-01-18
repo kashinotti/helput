@@ -1,6 +1,38 @@
-<h1>管理者ユーザー詳細ページ</h1>
+<div class="ad-user-show">
+  <%= render partial: 'admins/users/user', locals: { user: @user } %>
 
-<div>
-   <%= render partial: 'admins/users/user', locals: { user: @user } %>
+  <div class="ad-user-show__user-post">
+    <div>
+      <h1>
+        <i class="fas fa-pencil-alt"></i>
+        <%= @user.name %>の投稿
+      </h1>
+    </div>
+
+    <div class='ad-user-show__user-post--index'>
+      <div class="user-posts">
+
+        <% @posts.each do |post| %>
+          <article>
+
+            <div class="user-posts__post-title">
+              <p><%= link_to post.title, admins_post_path(post.id) %></p>
+            </div>
+
+            <div class="user-posts__post-info">
+              <i class="fas fa-heart"></i><%= post.likes.count %>
+              |
+              作成日:<%= post.created_at.strftime('%Y/%m/%d') %>
+            </div>
+
+          </article>
+        <% end %>
+
+        <div class="user-posts__paginate">
+          <%= paginate @posts %>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
-<%= @user.name %>

@@ -56,6 +56,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'rspec-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -65,9 +66,6 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 
-gem 'haml-rails'
-gem 'erb2haml'
-
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'ransack'
@@ -75,3 +73,4 @@ gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'wysiwyg-rails'
 gem 'kaminari'
+gem 'rails-i18n'

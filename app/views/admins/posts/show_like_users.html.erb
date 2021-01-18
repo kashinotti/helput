@@ -1,0 +1,32 @@
+<div class="ad-post-like-users">
+    
+    <div class="ad-post-like-users__heading">
+      <h1>
+        <%= @post.title %>にいいねしたユーザー
+      </h1>
+    </div>
+    
+    <% if @likes.count >= 1 %>
+      <% @likes.each do |like| %>
+        <div class="ad-post-like-users__index">
+          <div class="ad-like-user-info">
+            <div class="ad-like-user-info__user-name">
+              <p>
+                <%= attachment_image_tag like.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+                <%= link_to like.user.name, admins_user_path(like.user.id) %>
+              </p>
+            </div>
+          </div>
+          
+          <div class="ad-like-user-info__paginate">
+            <%= paginate @likes %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+    <div class="no-result">
+      <h3>いいねしたユーザーはいません</h3>
+    </div>
+    <% end %>
+    
+  </div>

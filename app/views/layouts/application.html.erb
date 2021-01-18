@@ -14,9 +14,15 @@
     <div class="wrapper">
       <header>
         <div class="header-title">
+          <% if user_signed_in? %>
           <h1>
-            <%= link_to 'helput', root_path %>
+            <%= link_to 'helput', user_path(current_user.id), class: "header-title__logo" %>
           </h1>
+          <% else %>
+          <h1>
+            <%= link_to 'helput', root_path, class: "header-title__logo" %>
+          </h1>
+          <% end %>
         </div>
         
         <% if user_signed_in? %>
@@ -30,7 +36,7 @@
                 <p><%= link_to '投稿する', new_post_path %></p>
               </li>
               <li>
-                <p>チャット</p>
+                <p><%= link_to 'ユーザー検索', users_path %></p>
               </li>
               <li>
                 <p><%= link_to 'お問い合わせ', new_contact_path %></P>

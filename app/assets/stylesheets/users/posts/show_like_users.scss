@@ -1,0 +1,47 @@
+.post-like-users {
+    width: 65%;
+    background-color: white;
+    // 中央に配置するために左右にautoを指定
+    margin: 50px auto 70px auto;
+    padding: 40px;
+    &__heading {
+      h1 {
+        text-align: center;
+        padding: 50px 0;
+      }
+    }
+    
+    &__index {
+      padding: 0 20px 0 20px;
+     .like-user-info {
+        align-items: center;
+        &__user-name {
+        
+          border-top: 3px solid #CCCCCC;
+          padding-top: 10px;
+          p {
+            font-size: 24px;
+            :hover {
+              color: black;
+              text-decoration: underline;
+            }
+            :active {
+              color: black;
+              text-decoration: underline;
+            }
+            :visited {
+              color: black;
+            }
+            :link {
+              color: black;
+            }
+          }
+        }
+        
+        &__paginate {
+          text-align: center;
+        }
+     }
+   }
+  }
+

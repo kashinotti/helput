@@ -1,49 +1,58 @@
-<div>
+<div class="event-show">
   <h1>予定詳細</h1>
-  <br>
-  <table>
-    <tbody>
-      <tr>
-        <th>
-          予定のタイトル
-        </th>
-        <td>
-          <%= @event.title %>
-        </td>
-      </tr>
-      
-      <tr>
-        <th>
-          予定の詳細
-        </th>
-        <td>
-          <%= @event.content %>
-        </td>
-      </tr>
-      
-      <tr>
-        <th>
-          開始時間
-        </th>
-        <td>
-          <%= @event.start_date.to_s(:datetime_jp) %>
-        </td>
-      </tr>
-      
-      <tr>
-        <th>
-          終了時間
-        </th>
-        <td>
-          <%= @event.end_date.to_s(:datetime_jp) %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
   
-  <div>
-    <%= link_to "予定を編集する", edit_event_path(@event.id) %>
-    |
-    <%= link_to "予定の削除", event_path(@event.id), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+  <div class="event-show-field">
+    <div class="event-show__field--head">
+      <h3>
+        <i class="fas fa-square head-icon"></i>
+        タイトル
+      </h3>
+    </div>
+    <div class="event-show-field-title--content">
+      <%= @event.title %>
+    </div>
   </div>
+  
+  <div class="event-show-field">
+    <div class="event-show__field--head">
+      <h3>
+        <i class="fas fa-square head-icon"></i>
+        詳細
+      </h3>
+    </div>
+    <div class="event-show-field-title--content">
+      <%= @event.content %>
+    </div>
+  </div>
+  
+  <div class="event-show-field">
+    <div class="event-show__field--head">
+      <h3>
+        <i class="fas fa-square head-icon"></i>
+        開始時間
+      </h3>
+    </div>
+    <div class="event-show-field-title--content">
+      <%= @event.start_date.strftime('%Y/%m/%d %H:%M') %>
+    </div>
+  </div>
+  
+  <div class="event-show-field">
+    <div class="event-show__field--head">
+      <h3>
+        <i class="fas fa-square head-icon"></i>
+        終了時間
+      </h3>
+    </div>
+    <div class="event-show-field-title--content">
+      <%= @event.end_date.strftime('%Y/%m/%d %H:%M') %>
+    </div>
+  </div>
+  
+  <% if @event.user_id == current_user.id %>
+    <div class="event-show__button">
+      <%= link_to "予定を編集する", edit_event_path(@event.id), class: "event-button btn btn-primary" %>
+      <%= link_to "予定の削除", event_path(@event.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "event-button btn btn-danger" %>
+    </div>
+  <% end %>
 </div>

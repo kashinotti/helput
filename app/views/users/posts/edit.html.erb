@@ -7,7 +7,7 @@
 
   <div class="post-edit__edit-form">
     <%= form_with model: @post, url: post_path(@post.id), method: :patch, local: true do |f| %>
-
+    <%= render partial: 'layouts/error_messages', locals: { model: f.object } %>
       <div class="edit-field">
         <div class="edit-field__label">
           <%= f.label :title, "タイトル" %>
@@ -21,6 +21,8 @@
         </div>
           <%= f.text_area :content, id: 'edit_content_form' %>
       </div>
+      
+      
       <div class="edit-field__submit">
         <%= f.submit '変更を保存', class: "btn btn-primary btn-lg", "data-confirm" => "変更を保存します。よろしいですか？" %>
       </div>

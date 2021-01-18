@@ -1,0 +1,70 @@
+.room {
+  width: 1000px;
+  background-color: #EDFFFE;
+  margin: 50px auto 50px auto;
+  &__heading {
+    text-align: center;
+    h1 {
+      padding-top: 20px;
+    }
+    p {
+      font-size: 30px;
+    }
+    &--participant {
+      text-align: center;
+      font-size: 28px;
+      :hover {
+        color: #666666;
+        text-decoration: underline;
+      }
+      :active {
+        color: #666666;
+        text-decoration: underline;
+      }
+      :visited {
+        color: #666666;
+      }
+      :link {
+        color: #666666;
+      }
+    }
+  }
+  &__message-form {
+    width: 850px;
+    margin: 0 auto 0 auto;
+    &--submit {
+      text-align: center;
+      padding: 30px 0 30px 0;
+    }
+  }
+  .messages {
+    width: 850px;
+    background-color: white;
+    margin: 30px auto 30px auto;
+    padding-top: 50px;
+    .message {
+      display: flex;
+      align-items: center;
+      border-top: 3px solid #CCCCCC;
+      min-height: 200px;
+      .upper-message {
+        width: 100%;
+        &__user-name {
+          font-size: 30px;
+          color: #444444;
+        }
+
+        &__content {
+          margin-left: 60px;
+        }
+
+        .lower-message {
+          &__created {
+            display: flex;
+            justify-content: flex-end;
+          }
+        }
+      }
+    }
+  }
+}

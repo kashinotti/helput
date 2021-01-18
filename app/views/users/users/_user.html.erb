@@ -18,7 +18,7 @@
       <td>
         <p>
           <i class="fas fa-users"></i>
-          フォロー：<%= link_to user.followings.count, user_follow_path(user.id) %>
+          フォロー：<%= link_to user.followings.where.not(is_deleted: true).count, user_follow_path(user.id) %>
         </p>
       </td>
     </tr>
@@ -27,7 +27,7 @@
       <td>
        <p>
          <i class="fas fa-users"></i>
-         フォロワー：<%= link_to user.followers.count, user_follower_path(user.id) %>
+         フォロワー：<%= link_to user.followers.where.not(is_deleted: true).count, user_follower_path(user.id) %>
         </p>
       </td>
     </tr>
@@ -40,18 +40,18 @@
        </p>
       </td>
     </tr>
-    
+
     <% if user == current_user %>
     <tr>
       <td>
         <p>
-          <i class="fas fa-stream"></i>
+          <i class="far fa-clock"></i>
           <%= link_to 'タイムライン', user_timeline_path %>
         </p>
       </td>
     </tr>
     <% end %>
-    
+
     <tr>
       <td>
         <p>
@@ -60,7 +60,7 @@
         </p>
       </td>
     </tr>
-    
+
     <tr>
       <td>
          <p>
@@ -71,16 +71,19 @@
     </tr>
 
     <tr>
+      <!--表示ユーザーがログインユーザーではなく、相互フォローができていればチャットへのリンクを表示する-->
       <% unless user.id == current_user.id %>
        <% if (current_user.following? user) && (user.following? current_user) %>
+         <!--チャットルームがすでに存在していればリンクを表示-->
          <% if isRoom == true %>
-         <td>
-           <p>
-             <i class="far fa-comments"></i>
-            <%= link_to "チャット", room_path(roomId) %>
-           </p>
-        </td>
+          <td>
+            <p>
+              <i class="far fa-comments"></i>
+              <%= link_to "チャット", room_path(roomId) %>
+            </p>
+        　</td>
          <% else %>
+           <!--まだチャットルームが作成されていない場合、formで@userRoomのuser_idを入れてルームを作成-->
            <%= form_with model: room, url: rooms_path, method: :post, local: true do |f| %>
              <%= fields_for userRoom do |u| %>
                <%= u.hidden_field :user_id, value: user.id %>
@@ -96,7 +99,7 @@
        <% end %>
       <% end %>
     </tr>
-  
+
     <% if user.id == current_user.id %>
     <tr>
       <td>
@@ -108,7 +111,7 @@
     </tr>
     <% end %>
   </table>
-  
+
   <% if user.id != current_user.id %>
     <div>
       <%= render partial: 'users/relationships/follow', locals: { user: @user } %>

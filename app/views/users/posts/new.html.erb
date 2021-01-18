@@ -1,13 +1,13 @@
 <div class="post-new">
-  
+
   <h1>
     <i class="fas fa-pencil-alt"></i>
     記事の新規投稿
   </h1>
-  
+
   <div class="post-new__new-form">
   <%= form_with model: @post, url: posts_path, method: :post, local: true do |f| %>
-
+  <%= render partial: 'layouts/error_messages', locals: { model: f.object } %>
     <div class="new-field">
       <div class="new-field__label">
         <%= f.label :title, "タイトル" %>
@@ -23,7 +23,7 @@
     </div>
 
     <div class="new-field__submit">
-      <%= f.submit '投稿', class: "btn btn-primary btn-lg", "data-confirm" => "投稿を完了します。よろしいですか?" %>
+      <%= f.submit '投稿', class: "new-post-submit btn btn-primary btn-lg", "data-confirm" => "投稿を完了します。よろしいですか?" %>
     </div>
 
   <% end %>
@@ -32,7 +32,7 @@
 
 
 <script>
-  new FroalaEditor('#new_content_form',{
+  var editor = new FroalaEditor('#new_content_form',{
     language: 'ja',
     imageUploadURL: '/upload_image',
     imageUploadParams: {
