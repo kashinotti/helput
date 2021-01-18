@@ -14,7 +14,7 @@
       <% if @user.id == current_user.id %>
         <div class="post-search__result--search-bar">
           <%= search_form_for @q do |f| %>
-
+            <!--タイトルと記事の内容で検索可能-->
             <%= f.search_field :title_or_content_cont, required: true, placeholder:"投稿を検索", class: "tab__post-search--form" %>
             <%= f.button :type => "submit" do %>
               <i class="tab__post-search--form fas fa-search"></i>

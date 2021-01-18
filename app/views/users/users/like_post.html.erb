@@ -11,7 +11,7 @@
       <div class="like-posts">
         <% if @likes.count >= 1 %>
           <% @likes.each do |like| %>
-              <!--投稿ごとのいいねの数を表示させるためにidにキー(like.post_id)を入れ変数postに代入-->
+              <!--投稿ごとのいいねの数を表示させるため、投稿詳細ページに投稿idを引数に入れるにidにキー(like.post_id)を入れ変数postに代入-->
               <% post = Post.find_by(id: like.post_id) %>
               <!--退会済みユーザーの投稿を表示させないために条件分岐-->
               <% if post.user.is_deleted == false %>

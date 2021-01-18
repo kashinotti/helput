@@ -14,7 +14,7 @@
       <% if @user.id == current_user.id %>
         <div class="user-show__my-post--post-search">
           <%= search_form_for @q do |f| %>
-
+            <!--タイトルと記事の内容で検索可能-->
             <%= f.search_field :title_or_content_cont, required: true, placeholder:"投稿を検索", class: "tab__post-search--form" %>
             <%= f.button :type => "submit" do %>
               <i class="tab__post-search--form fas fa-search"></i>
@@ -49,6 +49,7 @@
           </div>
         </div>
       <% else %>
+        <!--投稿数が0の場合に表示されるメッセージ-->
         <h4>まだ投稿がありません</h4>
       <% end %>
   </div>

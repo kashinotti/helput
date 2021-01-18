@@ -20,22 +20,25 @@ class Users::UsersController < ApplicationController
     # 検索フォームの値を格納するために@qを定義
     @q = Post.ransack(params[:q])
 
-    # チャット機能に必要な変数を以下に記述
+    # チャットルームが作成されたときに各ユーザのUserRoomのテーブルが必要なので、whereメソッドで取得
     @currentUserRoom = UserRoom.where(user_id: current_user.id)
     @otherUserRoom = UserRoom.where(user_id: @user.id)
 
     unless @user.id == current_user.id
-
+      # ログインユーザーと相手のUserRoomテーブルをeachで取り出し、＠roomIdに代入
       @currentUserRoom.each do |cu|
         @otherUserRoom.each do |ot|
           if cu.room_id == ot.room_id
+            # まだチャットルームが作成されていなければ新しく作成しなければならない。
+            # 作成されているか判断するためにtrueを代入
             @isRoom = true
             @roomId = cu.room_id
           end
         end
       end
     end
-
+    
+    # チャットルームが作成されていなければ新しくからのインスタンスを作成
     unless @isRoom
       @room = Room.new
       @userRoom = UserRoom.new
@@ -72,11 +75,13 @@ class Users::UsersController < ApplicationController
   end
 
   def follow_index
+    # 退会済みのユーザー以外のユーザーを表示させるためにwhere.notで退会済みユーザーを除外
     @followings = @user.followings.all.where.not(is_deleted: true).order(created_at: :desc).page(params[:page]).per(10)
   end
 
 
   def follower_index
+    # 退会済みのユーザー以外のユーザーを表示させるためにwhere.notで退会済みユーザーを除外
     @followers = @user.followers.all.where.not(is_deleted: true).order(created_at: :desc).page(params[:page]).per(10)
   end
 
@@ -85,7 +90,7 @@ class Users::UsersController < ApplicationController
   end
 
   def withdraw
-    # is_deletedカラムをtrueにする
+    # is_deletedカラムをtrueにして論理削除
     @user.update(is_deleted: true)
     # 退会フラグ変更後にユーザーの投稿、いいね、コメントを全て削除し、他のユーザーに表示されないようにする
     @user.posts.destroy_all

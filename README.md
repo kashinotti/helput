@@ -25,7 +25,15 @@
 投稿された内容にコメントでアドバイスを送るとき（新人が何を学習しどのように理解しているか把握できる）
 
 ## 設計書
-作成中
+・ER図
+https://app.diagrams.net/?libs=general;uml#G1ccc9o4YCGGpodeLJ0kRfMrnieWdR5Smc
+
+・アプリケーション詳細設計
+https://docs.google.com/spreadsheets/d/1ZD7UB51m5fq5Jrn30ebeNIcTfASW1mRP/edit#gid=2098750931
+
+・テーブル設計書
+https://docs.google.com/spreadsheets/d/10BG4UqU_opLcrmMyc7PfC89Oy_ieU601/edit#gid=1172106777
+
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1pylIdviGSqzM538Gv9xADfIa4APYNzMVX6AXnk2t6Yo/edit#gid=698279022
 
@@ -37,4 +45,5 @@ https://docs.google.com/spreadsheets/d/1pylIdviGSqzM538Gv9xADfIa4APYNzMVX6AXnk2t
 - 仮想環境：Vagrant,VirtualBox
 
 ## 使用素材
-未定
+・ぱくたそ
+https://www.pakutaso.com/

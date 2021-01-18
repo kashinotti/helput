@@ -11,7 +11,7 @@
       <div class="timeline-posts">
         <% if @timelines.count >= 1 %>
           <% @timelines.each do |timeline| %>
-            <!--退会済みユーザーの投稿を表示させないために条件分岐-->
+            <!--退会済みユーザーの投稿を表示-->
             <% if timeline.user.is_deleted == false %>
               <article>
   
