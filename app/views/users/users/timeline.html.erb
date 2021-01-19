@@ -11,30 +11,26 @@
       <div class="timeline-posts">
         <% if @timelines.count >= 1 %>
           <% @timelines.each do |timeline| %>
-            <!--退会済みユーザーの投稿を表示-->
-            <% if timeline.user.is_deleted == false %>
-              <article>
+            <article>
+              <div class="timeline-posts__user">
+                <p>
+                  <%= attachment_image_tag timeline.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
+                  <%= link_to timeline.user.name, user_path(timeline.user.id) %>
+                </p>
+              </div>
   
-                <div class="timeline-posts__user">
-                  <p>
-                    <%= attachment_image_tag timeline.user, :profile_image, :fill, 40, 40, format: 'jpg', class: "img-circle profile-img", fallback: "no_image.jpg", size: "40x40" %>
-                    <%= link_to timeline.user.name, user_path(timeline.user.id) %>
-                  </p>
-                </div>
+              <div class="timeline-posts__post-title">
+                <p>
+                  <%= link_to timeline.title, post_path(timeline.id) %>
+                </p>
+              </div>
   
-                <div class="timeline-posts__post-title">
-                  <p>
-                    <%= link_to timeline.title, post_path(timeline.id) %>
-                  </p>
-                </div>
-  
-                <div class="timeline-posts__post-info">
-                  <i class="fas fa-heart"></i>&nbsp;<%= timeline.likes.count %>
-                  |
-                  作成日:<%= timeline.created_at.strftime('%Y/%m/%d') %>
-                </div>
-              </article>
-            <% end %>
+              <div class="timeline-posts__post-info">
+                <i class="fas fa-heart"></i>&nbsp;<%= timeline.likes.count %>
+                |
+                作成日:<%= timeline.created_at.strftime('%Y/%m/%d') %>
+              </div>
+            </article>
           <% end %>
         <% else %>
           <h4>

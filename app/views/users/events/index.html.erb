@@ -23,6 +23,7 @@
 
 
 <!--ブラウザバックすると、カレンダー描画後のキャッシュされた状態に戻ってさらに描画される結果、二重描画になってしまうのでturbolinks:before-cacheイベントを使用-->
+<!--キャッシュの開始前の状態を読み込むことで二重描画を防ぐ。-->
   <script>
     document.addEventListener('turbolinks:before-cache', function() {
      $('#calendar').empty()
