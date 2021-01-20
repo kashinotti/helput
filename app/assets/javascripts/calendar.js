@@ -17,7 +17,7 @@ $(document).on('turbolinks:load',function(){
   var user_id = $('.events_user').val();
 
   $('#calendar').fullCalendar({
-    events: `/users/${user_id}/events/index.json`,
+    events: '/users/' + user_id + '/events/index.json',
     titleFormat: 'YYYY年M月',
     selectable: true,
     dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
@@ -26,8 +26,8 @@ $(document).on('turbolinks:load',function(){
       center: 'title',
       right: 'today, prev, next',
     },
-    
-    
+
+
     buttonText: {
       today: '今日',
       prev: '前月',
