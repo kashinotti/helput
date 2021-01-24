@@ -39,7 +39,8 @@ Rails.application.routes.draw do
   get "/download_file/:name" => "upload#access_file", :as => :upload_access_file, :name => /.*/
 
   devise_for :admins, controllers: {
-    sessions: 'admins/sessions'
+    sessions: 'admins/sessions',
+    registrations: 'admins/registrations'
   }
 
   namespace :admins do
